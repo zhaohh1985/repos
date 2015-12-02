@@ -1,4 +1,4 @@
-package model;
+package br.ufpb.infrapacs.integrationAPI.message.xml;
 
 import java.util.List;
 

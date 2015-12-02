@@ -1,3 +1,4 @@
+package br.ufpb.infrapacs.integrationAPI.main;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,14 +7,14 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
-import model.Completed;
-import model.Credentials;
-import model.Object;
-import model.Result;
-import model.StorageDelete;
-import model.StorageResult;
-import model.StorageSave;
-import model.URL;
+import br.ufpb.infrapacs.integrationAPI.message.xml.Completed;
+import br.ufpb.infrapacs.integrationAPI.message.xml.Credentials;
+import br.ufpb.infrapacs.integrationAPI.message.xml.Object;
+import br.ufpb.infrapacs.integrationAPI.message.xml.Result;
+import br.ufpb.infrapacs.integrationAPI.message.xml.StorageDelete;
+import br.ufpb.infrapacs.integrationAPI.message.xml.StorageResult;
+import br.ufpb.infrapacs.integrationAPI.message.xml.StorageSave;
+import br.ufpb.infrapacs.integrationAPI.message.xml.URL;
 
 public class Main {
 
