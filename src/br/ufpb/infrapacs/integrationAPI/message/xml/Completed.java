@@ -22,8 +22,6 @@ public class Completed {
 
 	public void setCompletedMessage(String completedMessage) {
 		this.completedMessage = completedMessage;
-	}
-	
-	
+	}	
 
 }
