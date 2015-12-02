@@ -5,6 +5,6 @@ public class ServiceProcessor {
 	// 											enviar um storage de um objeto
 	//											get ID's / links dos estudos
 	//TODO metodos de integracao com gateways
-	//
+	//TODO Strategy para mandar as mensagens para o Sender (se vai criptografada, plano, etc)
 
 }
