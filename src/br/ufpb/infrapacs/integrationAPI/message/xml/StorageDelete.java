@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="service")
-public class StorageDelete extends Service {
+public class StorageDelete extends AbstractService {
 	
 	
 	private List<Object> object;

@@ -1,12 +1,10 @@
 package br.ufpb.infrapacs.integrationAPI.message.xml;
 
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlType(name="service", propOrder={"version", "name", "action", "messageID", "timestamp", "timeout"})
-@XmlSeeAlso({StorageDelete.class, StorageSave.class})
-public class Service {
+public abstract class AbstractService implements ServiceIF {
 			
 	private String version;	
 	private String name;	

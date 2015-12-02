@@ -3,7 +3,7 @@ package br.ufpb.infrapacs.integrationAPI.message.xml;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="service")
-public class StorageSave extends Service {
+public class StorageSave extends AbstractService {
 	
 	private URL url;
 		

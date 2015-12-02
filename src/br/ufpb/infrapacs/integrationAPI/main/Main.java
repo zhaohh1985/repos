@@ -1,5 +1,6 @@
 package br.ufpb.infrapacs.integrationAPI.main;
 import java.io.File;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +77,7 @@ public class Main {
 		storageDelete.setMessageID("312312");		
 		storageDelete.setTimestamp("12346567346");
 		storageDelete.setTimeout("23123");		
-		storageDelete.setAction("Save");
+		storageDelete.setAction("Delete");
 		storageDelete.setName("Storage");
 		storageDelete.setVersion("1.0");
 		
@@ -106,8 +107,13 @@ public class Main {
 
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
+			StringWriter str = new StringWriter();
+			
 			jaxbMarshaller.marshal(storageDelete, file);
 			jaxbMarshaller.marshal(storageDelete, System.out);
+			jaxbMarshaller.marshal(storageDelete, str);
+			
+			System.out.println(str.toString());
 
 		} catch (JAXBException e) {
 			e.printStackTrace();
