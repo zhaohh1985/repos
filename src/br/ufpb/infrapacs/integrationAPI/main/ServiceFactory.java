@@ -1,5 +1,6 @@
 package br.ufpb.infrapacs.integrationAPI.main;
 
+import br.ufpb.infrapacs.integrationAPI.exceptions.ServiceCreationException;
 import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
 import br.ufpb.infrapacs.integrationAPI.message.xml.StorageDelete;
 import br.ufpb.infrapacs.integrationAPI.message.xml.StorageResult;

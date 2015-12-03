@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.main;
+package br.ufpb.infrapacs.integrationAPI.exceptions;
 
 public class ServiceCreationException extends Exception {
 	
