@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="service")
-public class StorageResult extends AbstractService {
+public class StorageResult extends Service {
 	
 	private List<Result> result;
 	

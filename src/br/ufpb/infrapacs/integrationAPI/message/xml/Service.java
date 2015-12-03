@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlType(name="service", propOrder={"version", "name", "action", "messageID", "timestamp", "timeout"})
-public abstract class AbstractService implements ServiceIF {
+public class Service implements ServiceIF {
 			
 	private String version;	
 	private String name;	
@@ -13,6 +13,16 @@ public abstract class AbstractService implements ServiceIF {
 	private String messageID;
 	private String timestamp;
 	private String timeout;
+	
+	public Service(){
+		
+	}
+	
+	public Service(String name, String action, String version){
+		this.name = name;
+		this.action = action;
+		this.version = version;
+	}
 	
 	public String getVersion() {
 		return version;

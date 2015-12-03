@@ -73,13 +73,13 @@ public class Main {
 
 	public static void storageDelete() {
 		
-		StorageDelete storageDelete = new StorageDelete();
-		storageDelete.setMessageID("312312");		
+		StorageDelete storageDelete = (StorageDelete) ServiceFactory.createService(ServiceFactory.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
+//		storageDelete.setMessageID("312312");		
 		storageDelete.setTimestamp("12346567346");
 		storageDelete.setTimeout("23123");		
-		storageDelete.setAction("Delete");
-		storageDelete.setName("Storage");
-		storageDelete.setVersion("1.0");
+//		storageDelete.setAction("Delete");
+//		storageDelete.setName("Storage");
+//		storageDelete.setVersion("1.0");
 		
 		Object obj1 = new Object();
 		obj1.setId("1");
