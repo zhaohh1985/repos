@@ -1,9 +1,23 @@
 package br.ufpb.infrapacs.integrationAPI.main;
 import java.io.File;
 import java.io.StringWriter;
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -114,8 +128,63 @@ public class Main {
 			jaxbMarshaller.marshal(storageDelete, str);
 			
 			System.out.println(str.toString());
+			
+			Properties props = new Properties();
+            /** Parâmetros de conexão com servidor Gmail */
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.socketFactory.port", "25");
+            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.port", "25");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.debug", "true");
+            props.put("mail.smtp.socketFactory.fallback", "false");
+
+            
+            Session session = Session.getDefaultInstance(props,
+            new javax.mail.Authenticator() {
+                 protected PasswordAuthentication getPasswordAuthentication()
+                 {
+                       return new PasswordAuthentication("protocolointegracao", "pr0t0c0l0ap1");
+                 }
+            });
+
+            /** Ativa Debug para sessão */
+            session.setDebug(true);
+
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("daniloalexandre@gmail.com")); //Remetente
+
+            Address[] toUser = InternetAddress //Destinatário(s)
+                       .parse("daniloalexandre@gmail.com");  
+
+            message.setRecipients(Message.RecipientType.TO, toUser);
+            message.setSubject("Testando envio de Serviço - integrationAPI");//Assunto
+            message.addHeader("Message-ID", "<12121212121212@daba>");
+//          message.setText(str.toString());
+            
+           
+            
+            Multipart multipart = new MimeMultipart();
+            
+            MimeBodyPart attachment0 = new MimeBodyPart();
+            attachment0.setContent(str.toString(),"text/xml; charset=UTF-8");
+            multipart.addBodyPart(attachment0);
+            
+            message.setContent(multipart);
+            
+            /**Método para enviar a mensagem criada*/
+            Transport.send(message);
+
+            System.out.println("Feito!!!");
+
 
 		} catch (JAXBException e) {
+			e.printStackTrace();
+		} catch (AddressException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
 	}

@@ -75,12 +75,12 @@ public class ServiceFactory {
 	
 	protected static ServiceIF createStorageSave(){
 		
-		//TODO elaborar uma forma melhor de fornecer a vers„o.
+		//TODO elaborar uma forma melhor de fornecer a vers√£o.
 		ServiceIF service = null;
 		
 		try {
 			
-			service = createGenericService(StorageSave.class, "Storage", "Save", "1.0");
+			service = createGenericService(StorageSave.class);
 			
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -96,12 +96,12 @@ public class ServiceFactory {
 	
 	protected  static ServiceIF createStorageUpdate(){
 		
-		//TODO elaborar uma forma melhor de fornecer a vers„o.
+		//TODO elaborar uma forma melhor de fornecer a vers√£o.
 		ServiceIF service = null;
 		
 		try {
 			
-			service = createGenericService(StorageUpdate.class, "Storage", "Update", "1.0");
+			service = createGenericService(StorageUpdate.class);
 			
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -118,12 +118,12 @@ public class ServiceFactory {
 	
 	protected static ServiceIF createStorageDelete(){
 		
-		//TODO elaborar uma forma melhor de fornecer a vers„o.
+		//TODO elaborar uma forma melhor de fornecer a vers√£o.
 		ServiceIF service = null;
 		
 		try {
 			
-			service = createGenericService(StorageDelete.class, "Storage", "Delete", "1.0");
+			service = createGenericService(StorageDelete.class);
 			
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -139,12 +139,12 @@ public class ServiceFactory {
 	
 	protected static ServiceIF createStorageResult(){
 		
-		//TODO elaborar uma forma melhor de fornecer a vers„o.
+		//TODO elaborar uma forma melhor de fornecer a vers√£o.
 		ServiceIF service = null;
 		
 		try {
 			
-			service = createGenericService(StorageResult.class, "Storage", "Result", "1.0");
+			service = createGenericService(StorageResult.class);
 			
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -161,21 +161,30 @@ public class ServiceFactory {
 	protected  static ServiceIF createGenericService(Class serviceClass, String name, String action, String version) throws InstantiationException, IllegalAccessException, ServiceCreationException{
 		
 		
+		ServiceIF service = createGenericService(serviceClass);
+		
+		service.setName(name);
+		service.setAction(action);
+		service.setVersion(version);
+		return service;
+				
+			
+	}
+	
+	
+	protected  static ServiceIF createGenericService(Class serviceClass) throws InstantiationException, IllegalAccessException, ServiceCreationException{
+		
+		
 		Object object = serviceClass.newInstance();
 		
 		if(object instanceof ServiceIF){
 			
-			ServiceIF service = (ServiceIF) object;
-			service.setName(name);
-			service.setAction(action);
-			service.setVersion(version);
-			return service;
+			return (ServiceIF) object;
 			
 		}else{
 			//TODO elaborar os tipos de exception e internacionalizar as mensagens.
-			throw new ServiceCreationException("Classe n„o È um serviÁo v·lido");
+			throw new ServiceCreationException("Classe n√£o √© um servi√ßo v√°lido");
 		}	
 			
 	}
-	
 }
