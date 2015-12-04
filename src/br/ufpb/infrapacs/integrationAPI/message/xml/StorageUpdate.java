@@ -8,6 +8,13 @@ public class StorageUpdate extends Service {
 	private Object object;
 	private URL url;
 	
+	public StorageUpdate(){
+		super.setName("Storage");
+		super.setAction("Update");
+		super.setVersion("1.0");
+		
+	}
+	
 	public Object getObject() {
 		return object;
 	}
