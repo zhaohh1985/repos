@@ -4,14 +4,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="service")
 public class StorageUpdate extends Service {
+	
+	public static final String storageUpdateName = "Storage";
+	public static final String storageUpdateAction = "Update";
+	public static final String storageUpdateVersion = "1.0";
 		
 	private Object object;
 	private URL url;
 	
 	public StorageUpdate(){
-		super.setName("Storage");
-		super.setAction("Update");
-		super.setVersion("1.0");
+		super.setName(storageUpdateName);
+		super.setAction(storageUpdateAction);
+		super.setVersion(storageUpdateVersion);
 		
 	}
 	

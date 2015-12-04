@@ -7,4 +7,8 @@ public class ServiceProcessor {
 	//TODO metodos de integracao com gateways
 	//TODO Strategy para mandar as mensagens para o Sender (se vai criptografada, plano, etc)
 
+	public static void verifyMessages() {
+		
+	}
+	
 }

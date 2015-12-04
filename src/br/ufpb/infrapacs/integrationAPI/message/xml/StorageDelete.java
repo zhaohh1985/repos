@@ -8,12 +8,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="service")
 public class StorageDelete extends Service {
 	
-	
-	public StorageDelete(){
-		super.setName("Storage");
-		super.setAction("Delete");
-		super.setVersion("1.0");
+	public static final String storageDeleteName = "Storage";
+	public static final String storageDeleteAction = "Delete";
+	public static final String storageDeleteVersion = "1.0";		
 		
+	public StorageDelete(){
+		super.setName(storageDeleteName);
+		super.setAction(storageDeleteAction);
+		super.setVersion(storageDeleteVersion);		
 	}
 	
 	private List<Object> object;

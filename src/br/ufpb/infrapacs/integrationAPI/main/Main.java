@@ -1,11 +1,9 @@
 package br.ufpb.infrapacs.integrationAPI.main;
 import java.io.File;
 import java.io.StringWriter;
-import java.security.Security;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.Semaphore;
 
 import javax.mail.Address;
 import javax.mail.Message;
@@ -51,12 +49,10 @@ public class Main {
 	public static void storageResult() {
 		
 		StorageResult storageResult = new StorageResult();
+		
 		storageResult.setMessageID("312312");		
 		storageResult.setTimestamp("12346567346");
-		storageResult.setTimeout("23123");		
-		storageResult.setAction("Result");
-		storageResult.setName("Storage");
-		storageResult.setVersion("1.0");
+		storageResult.setTimeout("23123");			
 								
 		Result result1 = new Result();
 		result1.setOriginalMessageID("273912873912");
@@ -100,9 +96,6 @@ public class Main {
 //		storageDelete.setMessageID("312312");		
 		storageDelete.setTimestamp("12346567346");
 		storageDelete.setTimeout("23123");		
-//		storageDelete.setAction("Delete");
-//		storageDelete.setName("Storage");
-//		storageDelete.setVersion("1.0");
 		
 		Object obj1 = new Object();
 		obj1.setId("1");
@@ -266,11 +259,7 @@ public class Main {
 		cred.setValue("credentialValue");
 		url.setCredentials(cred);
 		storageSave.setUrl(url);
-
-		storageSave.setAction("Save");
-		storageSave.setName("Storage");
-		storageSave.setVersion("1.0");
-
+		
 		try {
 			File file = new File("C:\\temp\\storageSave.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(StorageSave.class);
