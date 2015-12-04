@@ -5,6 +5,7 @@ import java.security.Security;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.Semaphore;
 
 import javax.mail.Address;
 import javax.mail.Message;
@@ -22,6 +23,13 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import br.ufpb.infrapacs.integrationAPI.mail.MailAuthenticatorIF;
+import br.ufpb.infrapacs.integrationAPI.mail.MailContentStrategyIF;
+import br.ufpb.infrapacs.integrationAPI.mail.MailHeadStrategyIF;
+import br.ufpb.infrapacs.integrationAPI.mail.SMTPAuthenticatorStrategy;
+import br.ufpb.infrapacs.integrationAPI.mail.SMTPHeadStrategy;
+import br.ufpb.infrapacs.integrationAPI.mail.SMTPSender;
+import br.ufpb.infrapacs.integrationAPI.mail.SMTPSimpleContentStrategy;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Completed;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Credentials;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Object;
@@ -37,6 +45,7 @@ public class Main {
 		storageSave();
 		storageDelete();
 		storageResult();
+		sendStorageDelete();
 	}
 	
 	public static void storageResult() {
@@ -187,6 +196,59 @@ public class Main {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public static void sendStorageDelete() {
+		
+		StorageDelete storageDelete = (StorageDelete) ServiceFactory.createService(ServiceFactory.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
+		storageDelete.setTimestamp("12346567346");
+		storageDelete.setTimeout("23123");		
+		
+		Object obj1 = new Object();
+		obj1.setId("1");
+		obj1.setType("type1");
+		Credentials cred1 = new Credentials();
+		cred1.setValue("asdfh");
+		obj1.setCredential(cred1);
+		
+		Object obj2 = new Object();
+		obj2.setId("2");
+		obj2.setType("type2");
+		Credentials cred2 = new Credentials();
+		cred2.setValue("1we1233");
+		obj2.setCredential(cred2);
+		
+		List<Object> objects = new ArrayList<Object>();
+		objects.add(obj1);
+		objects.add(obj2);
+		storageDelete.setObject(objects);
+						
+		
+			
+		Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "25");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "25");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+        props.put("mail.smtp.socketFactory.fallback", "false");
+
+        MailAuthenticatorIF smtpAuthenticatorStrategy =  new SMTPAuthenticatorStrategy("protocolointegracao@gmail.com", "pr0t0c0l0ap1");
+        MailHeadStrategyIF smtpHeadStrategy = new SMTPHeadStrategy("protocolointegracao@gmail.com", "daniloalexandre@gmail.com", "dominio.com");
+        MailContentStrategyIF smtpSimpleContentStrategy = new SMTPSimpleContentStrategy();
+        
+        SMTPSender sender = new SMTPSender();
+        sender.setProperties(props);
+        sender.setAuthenticatorBuilder(smtpAuthenticatorStrategy);
+        sender.setHeadBuilder(smtpHeadStrategy);
+        sender.setContentBuilder(smtpSimpleContentStrategy);
+        
+        sender.send(storageDelete);
+        
+
 	}
 	
 	public static void storageSave() {
