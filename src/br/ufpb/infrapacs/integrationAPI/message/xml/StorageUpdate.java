@@ -5,17 +5,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="service")
 public class StorageUpdate extends Service {
 	
-	public static final String storageUpdateName = "Storage";
-	public static final String storageUpdateAction = "Update";
-	public static final String storageUpdateVersion = "1.0";
+	public static final String STORAGE_UPDATE_NAME = "Storage";
+	public static final String STORAGE_UPDATE_ACTION = "Update";
+	public static final String STORAGE_UPDATE_VERSION = "1.0";
 		
 	private Object object;
 	private URL url;
 	
 	public StorageUpdate(){
-		super.setName(storageUpdateName);
-		super.setAction(storageUpdateAction);
-		super.setVersion(storageUpdateVersion);
+		super.setName(STORAGE_UPDATE_NAME);
+		super.setAction(STORAGE_UPDATE_ACTION);
+		super.setVersion(STORAGE_UPDATE_VERSION);
 		
 	}
 	
