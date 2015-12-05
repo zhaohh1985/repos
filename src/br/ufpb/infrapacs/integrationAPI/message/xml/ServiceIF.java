@@ -5,6 +5,27 @@ import javax.xml.bind.annotation.XmlAttribute;
 public interface ServiceIF {
 	
 	
+	/**
+	 * StogareSave Service Identifier 
+	 */
+	public static final int STORAGE_SAVE = 1;
+	/**
+	 * StogareUpdate Service Identifier 
+	 */
+	public static final int STORAGE_UPDATE = 2;
+	/**
+	 * StogareDelete Service Identifier 
+	 */
+	public static final int STORAGE_DELETE = 3;
+	/**
+	 * StogareResult Service Identifier 
+	 */
+	public static final int STORAGE_RESULT = 4;
+
+	public int getType();
+	
+	public void setType(int type);
+	
 	public String getVersion();
 	
 	

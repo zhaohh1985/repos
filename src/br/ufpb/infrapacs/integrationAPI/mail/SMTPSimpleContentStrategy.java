@@ -1,15 +1,22 @@
 package br.ufpb.infrapacs.integrationAPI.mail;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.StringWriter;
 
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
+import javax.mail.Part;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
+import br.ufpb.infrapacs.integrationAPI.main.ServiceFactory;
 import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
 
 public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
@@ -45,6 +52,50 @@ public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
 		
 		return multipart;
 
+	}
+	
+	public int getType(){
+		return MailContentStrategyIF.SMTP_SIMPLE_CONTENT_STRATEGY;
+	}
+
+	@Override
+	public ServiceIF getService(Multipart content, int type) {
+		try {
+			for (int i = 0; i < content.getCount(); i++) {
+
+				Part part = content.getBodyPart(i);
+				// pegando um tipo do conteúdo
+				String contentType = part.getContentType();
+
+				// Tela do conteúdo
+				if (contentType.toLowerCase().startsWith("text/xml")) {
+					
+					//TODO melhorar a contrução de arquivo para o Unmarshaller
+					File serviceFile = new File("C:\\temp\\service.xml");
+					BufferedWriter buffWrite = new BufferedWriter(new FileWriter(serviceFile));
+					buffWrite.write(part.getContent().toString());
+					buffWrite.close();
+					
+					ServiceIF service = ServiceFactory.createService(type);
+					JAXBContext jaxbContext = JAXBContext.newInstance(service.getClass());
+					Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+					service = (ServiceIF) jaxbUnmarshaller.unmarshal(serviceFile);
+					
+					return service;
+					
+					
+				}
+					
+			}
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }

@@ -11,8 +11,6 @@ import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
 
 public abstract class AbstractMailSender implements MailSenderIF{
 	
-	 
-	
 	public void send(ServiceIF service) {
 		
 		try {
@@ -20,6 +18,8 @@ public abstract class AbstractMailSender implements MailSenderIF{
 			session.setDebug(true);
 			
 			Message message = getHeadBuilder().getMessage(session, service);
+			message.setHeader(MailXTags.HEAD_BUILDER_X_TAG, String.valueOf(getHeadBuilder().getType()));
+			message.setHeader(MailXTags.CONTENT_BUILDER_X_TAG, String.valueOf(getContentBuilder().getType()));
 			message.setContent(getContentBuilder().getContent(service));
 			
 			Transport.send(message);

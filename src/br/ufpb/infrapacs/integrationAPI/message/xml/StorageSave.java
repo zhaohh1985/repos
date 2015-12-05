@@ -13,9 +13,9 @@ public class StorageSave extends Service {
 	
 	public StorageSave(){
 		super.setName(STORAGE_SAVE_NAME);
-		
 		super.setAction(STORAGE_SAVE_ACTION);
-		super.setVersion(STORAGE_SAVE_VERSION);		
+		super.setVersion(STORAGE_SAVE_VERSION);
+		super.setType(ServiceIF.STORAGE_SAVE);
 	}
 	
 	public URL getUrl() {

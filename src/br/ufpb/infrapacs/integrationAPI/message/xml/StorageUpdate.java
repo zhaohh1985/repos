@@ -16,6 +16,7 @@ public class StorageUpdate extends Service {
 		super.setName(STORAGE_UPDATE_NAME);
 		super.setAction(STORAGE_UPDATE_ACTION);
 		super.setVersion(STORAGE_UPDATE_VERSION);
+		super.setType(ServiceIF.STORAGE_UPDATE);
 		
 	}
 	

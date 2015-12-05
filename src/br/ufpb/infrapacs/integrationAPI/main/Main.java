@@ -32,6 +32,7 @@ import br.ufpb.infrapacs.integrationAPI.message.xml.Completed;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Credentials;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Object;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Result;
+import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
 import br.ufpb.infrapacs.integrationAPI.message.xml.StorageDelete;
 import br.ufpb.infrapacs.integrationAPI.message.xml.StorageResult;
 import br.ufpb.infrapacs.integrationAPI.message.xml.StorageSave;
@@ -40,9 +41,9 @@ import br.ufpb.infrapacs.integrationAPI.message.xml.URL;
 public class Main {
 
 	public static void main(String[] args) {
-		storageSave();
-		storageDelete();
-		storageResult();
+//		storageSave();
+//		storageDelete();
+//		storageResult();
 		sendStorageDelete();
 	}
 	
@@ -92,7 +93,7 @@ public class Main {
 
 	public static void storageDelete() {
 		
-		StorageDelete storageDelete = (StorageDelete) ServiceFactory.createService(ServiceFactory.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
+		StorageDelete storageDelete = (StorageDelete) ServiceFactory.createService(ServiceIF.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
 //		storageDelete.setMessageID("312312");		
 		storageDelete.setTimestamp("12346567346");
 		storageDelete.setTimeout("23123");		
@@ -194,7 +195,7 @@ public class Main {
 	
 	public static void sendStorageDelete() {
 		
-		StorageDelete storageDelete = (StorageDelete) ServiceFactory.createService(ServiceFactory.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
+		StorageDelete storageDelete = (StorageDelete) ServiceFactory.createService(ServiceIF.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
 		storageDelete.setTimestamp("12346567346");
 		storageDelete.setTimeout("23123");		
 		
@@ -230,7 +231,7 @@ public class Main {
         props.put("mail.smtp.socketFactory.fallback", "false");
 
         MailAuthenticatorIF smtpAuthenticatorStrategy =  new SMTPAuthenticatorStrategy("protocolointegracao@gmail.com", "pr0t0c0l0ap1");
-        MailHeadStrategyIF smtpHeadStrategy = new SMTPHeadStrategy("protocolointegracao@gmail.com", "daniloalexandre@gmail.com", "dominio.com");
+        MailHeadStrategyIF smtpHeadStrategy = new SMTPHeadStrategy("protocolointegracao@gmail.com", "daniloalexandre@gmail.com, protocolointegracao@gmail.com", "dominio.com");
         MailContentStrategyIF smtpSimpleContentStrategy = new SMTPSimpleContentStrategy();
         
         SMTPSender sender = new SMTPSender();

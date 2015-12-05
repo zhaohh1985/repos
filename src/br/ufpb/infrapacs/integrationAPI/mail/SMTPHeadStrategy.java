@@ -1,6 +1,9 @@
 package br.ufpb.infrapacs.integrationAPI.mail;
 
+import java.util.Enumeration;
+
 import javax.mail.Address;
+import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -16,6 +19,10 @@ public class SMTPHeadStrategy implements MailHeadStrategyIF {
 	private String from;
 	private String to;
 	private String domain;
+	
+	public SMTPHeadStrategy(){
+		
+	}
 	
 	public SMTPHeadStrategy(String from, String to, String domain){
 		this.from = from;
@@ -35,7 +42,9 @@ public class SMTPHeadStrategy implements MailHeadStrategyIF {
 	        
 	        message.setSubject(service.getName()+"-"+service.getAction());
 	        
-	        message.addHeader("X-Message-ID", service.getMessageID()+"@"+this.domain);
+	        message.addHeader(MailXTags.MESSAGE_ID_X_TAG, service.getMessageID()+"@"+this.domain);
+	        message.addHeader(MailXTags.SERVICE_TYPE_X_TAG, String.valueOf(service.getType()));
+	        
 	        
 		} catch (AddressException e) {
 			e.printStackTrace();
@@ -69,6 +78,9 @@ public class SMTPHeadStrategy implements MailHeadStrategyIF {
 		this.domain = domain;
 	}
 	
+	public int getType(){
+		return MailHeadStrategyIF.SMTP_HEAD_STRATEGY;
+	}
 	
 	
 	
