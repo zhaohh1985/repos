@@ -3,12 +3,13 @@ package br.ufpb.infrapacs.integrationAPI.message.xml;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(name="service", propOrder={"version", "name", "action", "messageID", "timestamp", "timeout"})
+@XmlType(name="service", propOrder={"version", "name", "action", "messageID", "timestamp", "timeout", "type"})
 public class Service implements ServiceIF {
 			
 	private String version;	
 	private String name;	
 	private String action;
+	private int type;
 	
 	private String messageID;
 	private String timestamp;
@@ -73,6 +74,16 @@ public class Service implements ServiceIF {
 
 	public void setTimeout(String timeout) {
 		this.timeout = timeout;
-	}			
+	}
+
+	@XmlAttribute
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}	
+	
 	
 }

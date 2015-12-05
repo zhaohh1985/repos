@@ -13,41 +13,24 @@ import br.ufpb.infrapacs.integrationAPI.message.xml.StorageUpdate;
  */
 public class ServiceFactory {
 	/**
-	 * StogareSave Service Identifier 
-	 */
-	public static final int STORAGE_SAVE = 1;
-	/**
-	 * StogareUpdate Service Identifier 
-	 */
-	public static final int STORAGE_UPDATE = 2;
-	/**
-	 * StogareDelete Service Identifier 
-	 */
-	public static final int STORAGE_DELETE = 3;
-	/**
-	 * StogareResult Service Identifier 
-	 */
-	public static final int STORAGE_RESULT = 4;
-
-	/**
 	 * Strategy of building services. Create a corresponding service provided identifier
-	 * @param serviceId provided Identifier
+	 * @param serviceType provided Identifier
 	 * @return returns the Service or null if the serviceId is invalid 
 	 */
-	public static ServiceIF createService(int serviceId){
+	public static ServiceIF createService(int serviceType){
 		
 		ServiceIF service = null;
-		switch (serviceId) {
-		case STORAGE_SAVE:
+		switch (serviceType) {
+		case ServiceIF.STORAGE_SAVE:
 			service = createStorageSave();
 			break;
-		case STORAGE_UPDATE:
+		case ServiceIF.STORAGE_UPDATE:
 			service = createStorageUpdate();
 			break;
-		case STORAGE_DELETE:
+		case ServiceIF.STORAGE_DELETE:
 			service = createStorageDelete();
 			break;
-		case STORAGE_RESULT:
+		case ServiceIF.STORAGE_RESULT:
 			service = createStorageResult();
 			break;			
 		default:
@@ -76,7 +59,6 @@ public class ServiceFactory {
 	
 	protected static ServiceIF createStorageSave(){
 		
-		//TODO elaborar uma forma melhor de fornecer a versão.
 		ServiceIF service = null;
 		
 		try {
@@ -97,7 +79,6 @@ public class ServiceFactory {
 	
 	protected  static ServiceIF createStorageUpdate(){
 		
-		//TODO elaborar uma forma melhor de fornecer a versão.
 		ServiceIF service = null;
 		
 		try {
@@ -119,7 +100,6 @@ public class ServiceFactory {
 	
 	protected static ServiceIF createStorageDelete(){
 		
-		//TODO elaborar uma forma melhor de fornecer a versão.
 		ServiceIF service = null;
 		
 		try {
@@ -140,7 +120,6 @@ public class ServiceFactory {
 	
 	protected static ServiceIF createStorageResult(){
 		
-		//TODO elaborar uma forma melhor de fornecer a versão.
 		ServiceIF service = null;
 		
 		try {
@@ -184,7 +163,7 @@ public class ServiceFactory {
 			
 		}else{
 			//TODO elaborar os tipos de exception e internacionalizar as mensagens.
-			throw new ServiceCreationException("Classe não é um serviço válido");
+			throw new ServiceCreationException("Classe n�o � um servi�o v�lido");
 		}	
 			
 	}

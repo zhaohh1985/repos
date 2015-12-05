@@ -18,6 +18,7 @@ public class StorageResult extends Service {
 		super.setName(STORAGE_RESULT_NAME);
 		super.setAction(STORAGE_RESULT_ACTION);
 		super.setVersion(STORAGE_RESULT_NAME);
+		super.setType(ServiceIF.STORAGE_RESULT);
 		
 	}
 	

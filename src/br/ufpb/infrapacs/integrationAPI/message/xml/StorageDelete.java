@@ -15,7 +15,8 @@ public class StorageDelete extends Service {
 	public StorageDelete(){
 		super.setName(STORAGE_DELETE_NAME);
 		super.setAction(STORAGE_DELETE_ACTION);
-		super.setVersion(STORAGE_DELETE_VERSION);		
+		super.setVersion(STORAGE_DELETE_VERSION);
+		super.setType(ServiceIF.STORAGE_DELETE);
 	}
 	
 	private List<Object> object;
