@@ -35,3 +35,6 @@
 ehthumbs.db
 Thumbs.db
 /bin
+
+#Specific project files
+/temp/*

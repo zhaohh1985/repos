@@ -1,18 +1,27 @@
 package br.ufpb.infrapacs.integrationAPI.tests;
 
-import org.junit.After;
-import org.junit.Before;
+import java.io.File;
+import java.io.IOException;
 
 import junit.framework.TestCase;
 
+import org.apache.commons.io.FileUtils;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+
 public class GenericTestCase extends TestCase {
 	
-	@Before
-	protected void setUp() {
+	public static String outputDir = "temp/";
+	
+	@BeforeClass
+	protected void setUp() throws IOException {		
+		File dir = new File(outputDir);
+		dir.mkdir();
+		FileUtils.cleanDirectory(dir);
 		System.out.println("Start");
 	}
 	
-	@After
+	@AfterClass
 	protected void tearDown() {
 		System.out.println("End");
 		System.gc();
