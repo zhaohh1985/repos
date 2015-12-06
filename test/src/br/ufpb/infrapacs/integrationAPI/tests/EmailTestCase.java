@@ -1,7 +1,9 @@
-package br.ufpb.infrapacs.integrationAPI.main;
+package br.ufpb.infrapacs.integrationAPI.tests;
+
 import java.io.File;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -21,80 +23,63 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import org.junit.Test;
+
 import br.ufpb.infrapacs.integrationAPI.mail.MailAuthenticatorIF;
 import br.ufpb.infrapacs.integrationAPI.mail.MailContentStrategyIF;
 import br.ufpb.infrapacs.integrationAPI.mail.MailHeadStrategyIF;
+import br.ufpb.infrapacs.integrationAPI.mail.MailMessageStrategyIF;
 import br.ufpb.infrapacs.integrationAPI.mail.SMTPAuthenticatorStrategy;
 import br.ufpb.infrapacs.integrationAPI.mail.SMTPHeadStrategy;
+import br.ufpb.infrapacs.integrationAPI.mail.SMTPMessageStrategy;
+import br.ufpb.infrapacs.integrationAPI.mail.SMTPReceiver;
 import br.ufpb.infrapacs.integrationAPI.mail.SMTPSender;
 import br.ufpb.infrapacs.integrationAPI.mail.SMTPSimpleContentStrategy;
-import br.ufpb.infrapacs.integrationAPI.message.xml.Completed;
+import br.ufpb.infrapacs.integrationAPI.main.DefaultIdMessageGeneratorStrategy;
+import br.ufpb.infrapacs.integrationAPI.main.ServiceFactory;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Credentials;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Object;
-import br.ufpb.infrapacs.integrationAPI.message.xml.Result;
 import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
 import br.ufpb.infrapacs.integrationAPI.message.xml.StorageDelete;
-import br.ufpb.infrapacs.integrationAPI.message.xml.StorageResult;
-import br.ufpb.infrapacs.integrationAPI.message.xml.StorageSave;
-import br.ufpb.infrapacs.integrationAPI.message.xml.URL;
 
-public class Main {
-
-	public static void main(String[] args) {
-//		storageSave();
-//		storageDelete();
-//		storageResult();
-		sendStorageDelete();
-	}
+public class EmailTestCase extends GenericTestCase {
 	
-	public static void storageResult() {
+	@Test
+	private static void receiveServices() {
 		
-		StorageResult storageResult = new StorageResult();
+		Properties pop3Props = new Properties();
+		 
+		pop3Props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		pop3Props.setProperty("mail.pop3.socketFactory.fallback", "false");
+		pop3Props.setProperty("mail.pop3.port",  "995");
+		pop3Props.setProperty("mail.pop3.socketFactory.port", "995");
 		
-		storageResult.setMessageID("312312");		
-		storageResult.setTimestamp("12346567346");
-		storageResult.setTimeout("23123");			
-								
-		Result result1 = new Result();
-		result1.setOriginalMessageID("273912873912");
-		result1.setTimestamp("88729371923");
+		Properties props = System.getProperties();
+		props.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		props.setProperty("mail.imap.socketFactory.fallback", "false");
+		props.setProperty("mail.store.protocol", "imaps");
 		
-		Completed completed = new Completed();
-		completed.setStatus("1");
-		completed.setCompletedMessage("Completed message 001 002");
-		result1.setCompleted(completed);
+		MailAuthenticatorIF smtpAuthenticatorStrategy =  new SMTPAuthenticatorStrategy("protocolointegracao@gmail.com", "pr0t0c0l0ap1");
+		MailMessageStrategyIF smtpMesssaStrategy = new SMTPMessageStrategy("imaps", "imap.googlemail.com", "INBOX");
 		
-		Object obj1 = new Object();
-		obj1.setId("12345");
-		obj1.setType("objType1");
+		SMTPReceiver receiver = new SMTPReceiver();
+		receiver.setProperties(props);
+		receiver.setAuthenticatorBuilder(smtpAuthenticatorStrategy);
+		receiver.setMessageBuilder(smtpMesssaStrategy);
 		
-		List<Result> results = new ArrayList<Result>();
-		results.add(result1);
-		storageResult.setResult(results);
+		Iterator<ServiceIF> iterator = receiver.receive(null);
 		
-		List<Object> objects = new ArrayList<Object>();
-		objects.add(obj1);
-		result1.setObjects(objects);		
-		
-		try {
-			File file = new File("C:\\temp\\storageResult.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(StorageResult.class);
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-			jaxbMarshaller.marshal(storageResult, file);
-			jaxbMarshaller.marshal(storageResult, System.out);
-
-		} catch (JAXBException e) {
-			e.printStackTrace();
+		while (iterator.hasNext()) {
+			ServiceIF serviceIF = (ServiceIF) iterator.next();
+			System.out.println("MessageID:" +serviceIF.getMessageID() + "Name: " + serviceIF.getName() + "Action: " +serviceIF.getAction());
 		}
 	}
-
+	
+	@Test
 	public static void storageDelete() {
 		
 		StorageDelete storageDelete = (StorageDelete) ServiceFactory.createService(ServiceIF.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
-//		storageDelete.setMessageID("312312");		
+		storageDelete.setMessageID("312312");		
 		storageDelete.setTimestamp("12346567346");
 		storageDelete.setTimeout("23123");		
 		
@@ -192,7 +177,7 @@ public class Main {
 		}
 	}
 	
-	
+	@Test
 	public static void sendStorageDelete() {
 		
 		StorageDelete storageDelete = (StorageDelete) ServiceFactory.createService(ServiceIF.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
@@ -244,36 +229,4 @@ public class Main {
         
 
 	}
-	
-	public static void storageSave() {
-		
-		StorageSave storageSave = new StorageSave();
-
-		storageSave.setMessageID("123456");
-		storageSave.setTimestamp("12346567346");
-		storageSave.setTimeout("23123");
-
-		URL url = new URL();
-		url.setValue("a");
-		
-		Credentials cred = new Credentials();
-		cred.setValue("credentialValue");
-		url.setCredentials(cred);
-		storageSave.setUrl(url);
-		
-		try {
-			File file = new File("C:\\temp\\storageSave.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(StorageSave.class);
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-			jaxbMarshaller.marshal(storageSave, file);
-			jaxbMarshaller.marshal(storageSave, System.out);
-
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-	}
-
 }
