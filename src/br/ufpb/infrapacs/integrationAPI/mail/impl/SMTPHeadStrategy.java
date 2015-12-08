@@ -1,9 +1,6 @@
 package br.ufpb.infrapacs.integrationAPI.mail.impl;
 
-import java.util.Enumeration;
-
 import javax.mail.Address;
-import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;

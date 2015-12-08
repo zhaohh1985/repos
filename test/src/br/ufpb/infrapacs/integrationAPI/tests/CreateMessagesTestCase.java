@@ -1,6 +1,9 @@
 package br.ufpb.infrapacs.integrationAPI.tests;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.OutputStream;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,16 +53,22 @@ public class CreateMessagesTestCase extends GenericTestCase {
 		result1.setObjects(objects);		
 		
 		try {
-			File file = new File(outputDir + "storageResult.xml");
+			
+			
+			StringBuffer xmlStr = new StringBuffer();
+			ByteArrayOutputStream os = new ByteArrayOutputStream();
+			//File file = new File(outputDir + "storageResult.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(StorageResult.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-			jaxbMarshaller.marshal(storageResult, file);
-			jaxbMarshaller.marshal(storageResult, System.out);
+			//jaxbMarshaller.marshal(storageResult, file);
+			jaxbMarshaller.marshal(storageResult, os);
+			System.out.println(os.toString());
 			
-			assertTrue(file.exists() && file.length() > 0);
+			assertTrue( os!= null && os.size() > 0);
+			//assertTrue(file.exists() && file.length() > 0);
 
 		} catch (JAXBException e) {
 			e.printStackTrace();

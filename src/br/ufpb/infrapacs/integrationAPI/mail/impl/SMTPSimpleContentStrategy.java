@@ -1,9 +1,7 @@
 package br.ufpb.infrapacs.integrationAPI.mail.impl;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
 
 import javax.mail.MessagingException;
@@ -15,6 +13,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.stream.StreamSource;
 
 import br.ufpb.infrapacs.integrationAPI.mail.MailContentStrategyIF;
 import br.ufpb.infrapacs.integrationAPI.main.ServiceFactory;
@@ -71,20 +70,15 @@ public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
 				// Tela do conteúdo
 				if (contentType.toLowerCase().startsWith("text/xml")) {
 					
-					//TODO melhorar a contrução de arquivo para o Unmarshaller
-					File serviceFile = new File("C:\\temp\\service.xml");
-					BufferedWriter buffWrite = new BufferedWriter(new FileWriter(serviceFile));
-					buffWrite.write(part.getContent().toString());
-					buffWrite.close();
-					
+					StringBuffer xmlStr = new StringBuffer();
+					xmlStr.append(part.getContent().toString());
+
 					ServiceIF service = ServiceFactory.createService(type);
 					JAXBContext jaxbContext = JAXBContext.newInstance(service.getClass());
 					Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-					service = (ServiceIF) jaxbUnmarshaller.unmarshal(serviceFile);
+					service = (ServiceIF) jaxbUnmarshaller.unmarshal(new StreamSource( new StringReader( xmlStr.toString() ) ));
 					
-					return service;
-					
-					
+					return service;										
 				}
 					
 			}
