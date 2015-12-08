@@ -13,6 +13,8 @@ import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Session;
 
+import br.ufpb.infrapacs.integrationAPI.mail.impl.MailContentStrategyFactory;
+import br.ufpb.infrapacs.integrationAPI.mail.impl.MailXTags;
 import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
 
 public abstract class AbstractMailReceiver implements MailReceiverIF {

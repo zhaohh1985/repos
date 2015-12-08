@@ -29,12 +29,12 @@ import br.ufpb.infrapacs.integrationAPI.mail.MailAuthenticatorIF;
 import br.ufpb.infrapacs.integrationAPI.mail.MailContentStrategyIF;
 import br.ufpb.infrapacs.integrationAPI.mail.MailHeadStrategyIF;
 import br.ufpb.infrapacs.integrationAPI.mail.MailMessageStrategyIF;
-import br.ufpb.infrapacs.integrationAPI.mail.SMTPAuthenticatorStrategy;
-import br.ufpb.infrapacs.integrationAPI.mail.SMTPHeadStrategy;
-import br.ufpb.infrapacs.integrationAPI.mail.SMTPMessageStrategy;
-import br.ufpb.infrapacs.integrationAPI.mail.SMTPReceiver;
-import br.ufpb.infrapacs.integrationAPI.mail.SMTPSender;
-import br.ufpb.infrapacs.integrationAPI.mail.SMTPSimpleContentStrategy;
+import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPAuthenticatorStrategy;
+import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPHeadStrategy;
+import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPMessageStrategy;
+import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPReceiver;
+import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPSender;
+import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPSimpleContentStrategy;
 import br.ufpb.infrapacs.integrationAPI.main.DefaultIdMessageGeneratorStrategy;
 import br.ufpb.infrapacs.integrationAPI.main.ServiceFactory;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Credentials;
@@ -76,7 +76,7 @@ public class EmailTestCase extends GenericTestCase {
 	}
 	
 	@Test
-	public static void storageDelete() {
+	public static void sendStorageDeleteTestCase() {
 		
 		StorageDelete storageDelete = (StorageDelete) ServiceFactory.createService(ServiceIF.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
 		storageDelete.setMessageID("312312");		
