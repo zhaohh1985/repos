@@ -3,7 +3,9 @@ package br.ufpb.infrapacs.integrationAPI.tests;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -11,15 +13,22 @@ import javax.xml.bind.Marshaller;
 
 import org.junit.Test;
 
+import br.ufpb.infrapacs.integrationAPI.mail.MailAuthenticatorIF;
+import br.ufpb.infrapacs.integrationAPI.mail.MailMessageStrategyIF;
+import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPAuthenticatorStrategy;
+import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPMessageStrategy;
+import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPReceiver;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Completed;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Credentials;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Object;
 import br.ufpb.infrapacs.integrationAPI.message.xml.Result;
+import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
 import br.ufpb.infrapacs.integrationAPI.message.xml.StorageResult;
 import br.ufpb.infrapacs.integrationAPI.message.xml.StorageSave;
 import br.ufpb.infrapacs.integrationAPI.message.xml.URL;
 
 public class CreateMessagesTestCase extends GenericTestCase {
+	
 	
 	@Test
 	public void testStorageResultMessage() {
@@ -105,6 +114,6 @@ public class CreateMessagesTestCase extends GenericTestCase {
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
-	}
+	}	
 
 }

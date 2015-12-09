@@ -45,15 +45,15 @@ import br.ufpb.infrapacs.integrationAPI.message.xml.StorageDelete;
 public class EmailTestCase extends GenericTestCase {
 	
 	@Test
-	private static void receiveServices() {
+	public void testReceive() {	
 		
-		Properties pop3Props = new Properties();
-		 
-		pop3Props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-		pop3Props.setProperty("mail.pop3.socketFactory.fallback", "false");
-		pop3Props.setProperty("mail.pop3.port",  "995");
-		pop3Props.setProperty("mail.pop3.socketFactory.port", "995");
-		
+//		Properties pop3Props = new Properties();
+//		 
+//		pop3Props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+//		pop3Props.setProperty("mail.pop3.socketFactory.fallback", "false");
+//		pop3Props.setProperty("mail.pop3.port",  "995");
+//		pop3Props.setProperty("mail.pop3.socketFactory.port", "995");
+
 		Properties props = System.getProperties();
 		props.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		props.setProperty("mail.imap.socketFactory.fallback", "false");
@@ -75,8 +75,9 @@ public class EmailTestCase extends GenericTestCase {
 		}
 	}
 	
+	
 	@Test
-	public static void sendStorageDeleteTestCase() {
+	public void testSendStorageDelete() {
 		
 		StorageDelete storageDelete = (StorageDelete) ServiceFactory.createService(ServiceIF.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
 		storageDelete.setMessageID("312312");		
