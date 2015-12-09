@@ -2,8 +2,6 @@ package br.ufpb.infrapacs.integrationAPI.tests;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.OutputStream;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
