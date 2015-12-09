@@ -1,6 +1,7 @@
 package br.ufpb.infrapacs.integrationAPI.main;
 
 import java.util.Calendar;
+import java.util.UUID;
 /**
  * Default Strategy to Generate IDMesssage attribute.
  * @author Danilo
@@ -15,7 +16,9 @@ public class DefaultIdMessageGeneratorStrategy implements IdMessageGeneratorStra
 	 */
 	@Override
 	public String getNextId() {
-		return String.valueOf(Calendar.getInstance().getTime().getTime());
+		
+		return String.valueOf( UUID.randomUUID().toString());//Calendar.getInstance().getTime().getTime());
+		
 	}
 	
 	private DefaultIdMessageGeneratorStrategy(){

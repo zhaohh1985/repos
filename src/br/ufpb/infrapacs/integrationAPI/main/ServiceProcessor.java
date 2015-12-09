@@ -10,7 +10,7 @@ import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPAuthenticatorStrategy;
 import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPHeadStrategy;
 import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPSender;
 import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPSimpleContentStrategy;
-import br.ufpb.infrapacs.integrationAPI.message.xml.StorageDelete;
+import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
 
 public class ServiceProcessor {
 	
@@ -20,7 +20,7 @@ public class ServiceProcessor {
 	public static final String TO = "to";
 	public static final String DOMAIN = "domain";
 
-	public static void sendMessage(StorageDelete obj, Properties props, MailAuthenticatorIF smtpAuthenticatorStrategy, MailHeadStrategyIF smtpHeadStrategy, MailContentStrategyIF smtpSimpleContentStrategy) throws ServiceCreationException {
+	public static void sendMessage(ServiceIF obj, Properties props, MailAuthenticatorIF smtpAuthenticatorStrategy, MailHeadStrategyIF smtpHeadStrategy, MailContentStrategyIF smtpSimpleContentStrategy) throws ServiceCreationException {
 		
 		try {
 			obj.setTimestamp(System.currentTimeMillis()+"");			
