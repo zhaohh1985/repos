@@ -35,7 +35,7 @@ public class ServicesTestCase extends GenericTestCase {
 
 		
 		try {
-			ServiceProcessor.sendMessage(obj, props);
+			ServiceProcessor.sendMessage(obj, props, null, null, null);
 		} catch (ServiceCreationException e) {
 			fail();
 		}

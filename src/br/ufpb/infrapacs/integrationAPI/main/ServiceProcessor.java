@@ -20,14 +20,20 @@ public class ServiceProcessor {
 	public static final String TO = "to";
 	public static final String DOMAIN = "domain";
 
-	public static void sendMessage(StorageDelete obj, Properties props) throws ServiceCreationException {
+	public static void sendMessage(StorageDelete obj, Properties props, MailAuthenticatorIF smtpAuthenticatorStrategy, MailHeadStrategyIF smtpHeadStrategy, MailContentStrategyIF smtpSimpleContentStrategy) throws ServiceCreationException {
 		
 		try {
 			obj.setTimestamp(System.currentTimeMillis()+"");			
 			
-			MailAuthenticatorIF smtpAuthenticatorStrategy =  new SMTPAuthenticatorStrategy(props.getProperty(EMAIL), props.getProperty(PASSWORD));
-	        MailHeadStrategyIF smtpHeadStrategy = new SMTPHeadStrategy(props.getProperty(FROM), props.getProperty(TO), props.getProperty(DOMAIN));
-	        MailContentStrategyIF smtpSimpleContentStrategy = new SMTPSimpleContentStrategy();
+			if (smtpAuthenticatorStrategy == null) {
+				smtpAuthenticatorStrategy =  new SMTPAuthenticatorStrategy(props.getProperty(EMAIL), props.getProperty(PASSWORD));
+			}
+			if (smtpHeadStrategy == null) {
+				smtpHeadStrategy = new SMTPHeadStrategy(props.getProperty(FROM), props.getProperty(TO), props.getProperty(DOMAIN));
+			}
+			if (smtpSimpleContentStrategy == null) {
+				smtpSimpleContentStrategy = new SMTPSimpleContentStrategy();
+			}	        	      
 	        
 	        SMTPSender sender = new SMTPSender();
 	        sender.setProperties(props);
