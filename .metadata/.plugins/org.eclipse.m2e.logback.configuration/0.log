@@ -408,3 +408,14 @@
 2015-12-09 22:40:59,808 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2015-12-09 22:40:59,815 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2015-12-09 22:40:59,819 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\home\dcm\repos\dcm4chee-xds-infoset\dcm4chee-xds-infoset-v30\src\test\resources
+2015-12-10 00:46:24,588 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-10 00:46:24,603 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-12-10 00:46:24,611 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2015-12-10 00:46:24,616 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-10 00:46:24,622 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-12-10 00:46:25,013 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.sun.xml.stream.buffer:streambuffer:jar:0.4 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+2015-12-10 00:46:25,084 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.jvnet.staxex:stax-ex:jar:1.0 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+2015-12-10 00:46:25,529 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-10 00:46:25,535 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2015-12-10 00:46:25,544 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-10 00:46:25,548 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\home\dcm\repos\dcm4chee-xds-infoset\dcm4chee-xds-infoset-v30\src\test\resources
