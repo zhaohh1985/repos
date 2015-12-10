@@ -35,6 +35,6 @@
 ehthumbs.db
 Thumbs.db
 /bin
-
+/.metadata
 #Specific project files
 /temp/*

@@ -428,3 +428,12 @@
 2015-12-10 00:57:38,266 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
 2015-12-10 00:57:38,459 [Worker-10] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2015-12-10 00:57:38,465 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\home\dcm\repos\dcm4chee-xds-infoset\dcm4chee-xds-infoset-v30\src\test\resources
+2015-12-10 01:00:24,373 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-10 01:00:24,382 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-12-10 01:00:24,433 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+2015-12-10 01:00:24,440 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-10 01:00:24,456 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2015-12-10 01:00:26,347 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-10 01:00:26,353 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2015-12-10 01:00:26,491 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-10 01:00:26,505 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\home\dcm\repos\dcm4chee-xds-infoset\dcm4chee-xds-infoset-v30\src\test\resources
