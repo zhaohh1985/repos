@@ -1,0 +1,27 @@
+package br.ufpb.infrapacs.integrationAPI.tests;
+
+import java.io.File;
+
+import org.junit.After;
+import org.junit.Before;
+
+import junit.framework.TestCase;
+
+public class GenericTestCase extends TestCase {
+	
+	public String outputDir = "temp/";
+	
+	@Before
+	protected void setUp() {		
+		File f = new File(outputDir);
+		f.mkdir();
+		System.out.println("Start");
+	}
+	
+	@After
+	protected void tearDown() {
+		System.out.println("End");
+		System.gc();
+	}		
+
+}

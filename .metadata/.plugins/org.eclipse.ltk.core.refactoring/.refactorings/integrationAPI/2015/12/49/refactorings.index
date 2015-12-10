@@ -1,0 +1,22 @@
+1448937290475	Delete element
+1448938725802	Rename local variable 'storageSave'
+1448940509622	Delete element
+1448940860335	Copy compilation unit
+1448942380900	Rename local variable 'objectsList'
+1448943493111	Copy compilation unit
+1448945378752	Copy compilation unit
+1448947121782	Rename local variable 'storageDelete'
+1449024044200	Rename package 'model'
+1449024557701	Move compilation unit
+1449074949666	Rename package 'br.ufpb.infrapacs.API.mail'
+1449075129073	Rename type 'Message'
+1449075639631	Rename type 'IMessage'
+1449076011539	Rename type 'MessageFactory'
+1449076936659	Rename type 'Service'
+1449077000051	Rename type 'Processor'
+1449175397873	Move compilation unit
+1449406452374	Rename package 'integrationAPI'
+1449409781148	Rename local variable 'f'
+1449413598849	Delete element
+1449413672576	Delete element
+1449417986925	Rename method 'storageDelete'
