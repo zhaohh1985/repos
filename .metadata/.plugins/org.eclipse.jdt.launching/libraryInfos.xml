@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <libraryInfos>
+<libraryInfo home="C:\home\dcm\local\java" version="1.6.0_24">
+<bootpath>
+<entry path="C:\home\dcm\local\java\jre\lib\resources.jar"/>
+<entry path="C:\home\dcm\local\java\jre\lib\rt.jar"/>
+<entry path="C:\home\dcm\local\java\jre\lib\sunrsasign.jar"/>
+<entry path="C:\home\dcm\local\java\jre\lib\jsse.jar"/>
+<entry path="C:\home\dcm\local\java\jre\lib\jce.jar"/>
+<entry path="C:\home\dcm\local\java\jre\lib\charsets.jar"/>
+<entry path="C:\home\dcm\local\java\jre\lib\modules\jdk.boot.jar"/>
+<entry path="C:\home\dcm\local\java\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\home\dcm\local\java\jre\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\home\dcm\local\java\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
 <libraryInfo home="C:\Program Files (x86)\Java\jre6" version="1.6.0_31">
 <bootpath>
 <entry path="C:\Program Files (x86)\Java\jre6\lib\resources.jar"/>
