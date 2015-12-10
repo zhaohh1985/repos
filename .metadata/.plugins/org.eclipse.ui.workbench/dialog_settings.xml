@@ -12,8 +12,10 @@
 			<item value="org.eclipse.e4.ui.parts"/>
 			<item value="org.eclipse.e4.ui.parts"/>
 			<item value="org.eclipse.e4.ui.parts"/>
+			<item value="org.eclipse.e4.ui.parts"/>
 		</list>
 		<list key="textArray">
+			<item value="break"/>
 			<item value="task"/>
 			<item value="list"/>
 			<item value="serv"/>
@@ -25,6 +27,7 @@
 			<item value="package"/>
 		</list>
 		<list key="orderedElements">
+			<item value="org.eclipse.debug.ui.BreakpointView"/>
 			<item value="org.eclipse.ui.views.TaskList"/>
 			<item value="org.eclipse.mylyn.tasks.ui.views.tasks"/>
 			<item value="org.eclipse.wst.server.ui.ServersView"/>
@@ -35,6 +38,7 @@
 			<item value="org.eclipse.jdt.ui.PackageExplorer"/>
 		</list>
 		<list key="textEntries">
+			<item value="1"/>
 			<item value="1"/>
 			<item value="1"/>
 			<item value="2"/>
