@@ -35,10 +35,11 @@
 ehthumbs.db
 Thumbs.db
 /bin
-/.metadata
 #Specific project files
 /temp/*
-.metadata/*
-.metadata/.plugins/*
 .plugins/*
 org.eclipse*
+
+# eclipse specific git ignore #
+######################
+.metadata
