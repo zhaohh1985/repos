@@ -73,56 +73,5 @@ public class IntegrationAPIProperties {
 	public String toString(){
 		return properties.toString();
 	}
-	
-	
-	
-//	public String getSmtpHost() throws PropertyNotFoundException {
-//	
-//	return getProperty(MAIL_SMTP_HOST);
-//}
-//
-//public boolean isEmailAuth() throws PropertyNotFoundException {
-//	return Boolean.parseBoolean(getProperty(MAIL_SMTP_AUTH));
-//}
-//
-//public Integer getEmailSocketFactoryPort() throws NumberFormatException, PropertyNotFoundException {
-//	return Integer.parseInt(getProperty(MAIL_SMTP_SOCKET_FACTORY_PORT));
-//}
-//
-//public Integer getSmtpPort() throws NumberFormatException, PropertyNotFoundException {
-//	return Integer.parseInt(getProperty(MAIL_SMTP_PORT));
-//}
-//
-//public String getEmailSocketFactoryClass() throws PropertyNotFoundException {
-//	return getProperty(MAIL_SMTP_SOCKET_FACTORY_CLASS);
-//}
-//
-//public String getAuthenticationLogin() throws PropertyNotFoundException {
-//	return getProperty(AUTHENTICATION_LOGIN);
-//}
-//
-//public String getAuthenticationPassword() throws PropertyNotFoundException {
-//	return getProperty(AUTHENTICATION_PASSWORD);
-//}
-	
-//	public String getSmtpHost() {
-//		return instance.getProperty("mail.smtp.host", "smtp.gmail.com");
-//	}
-//	
-//	public boolean isEmailAuth() {
-//		return Boolean.parseBoolean(instance.getProperty("mail.smtp.auth", "true"));
-//	}
-//	
-//	public Integer getEmailSocketFactoryPort() {
-//		return Integer.parseInt(instance.getProperty("mail.smtp.socketFactory.port", "465"));
-//	}
-//	
-//	public Integer getSmtpPort() {
-//		return Integer.parseInt(instance.getProperty("mail.smtp.port", "465"));
-//	}
-//	
-//	public String getEmailSocketFactoryClass() {
-//		return instance.getProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-//	}
 							
 }
