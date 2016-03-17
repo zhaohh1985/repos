@@ -16,6 +16,7 @@ public class IntegrationAPIProperties {
 	public static final String MAIL_SMTP_SOCKET_FACTORY_CLASS ="mail.smtp.socketFactory.class";
 	public static final String AUTHENTICATION_LOGIN ="authentication.login";
 	public static final String AUTHENTICATION_PASSWORD ="authentication.password";
+	public static final String LOG_MIN_SEVERITY ="log.min.severity";
 
 	
 	private static String configFilePath = "conf/config.properties";
