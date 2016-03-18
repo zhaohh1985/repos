@@ -1,7 +1,0 @@
-INDEX VERSION 1.126
-C:\home\dcm\repos\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3149234774.index
-\dcm4jboss-web\src\java
-C:\home\dcm\repos\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\326901161.index
-\dcm4jboss-wado\src\java
-C:\home\dcm\repos\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3242429751.index
-\dcm4jboss-sar\src\java

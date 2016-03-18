@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<workingSetManager>
-<workingSet editPageId="org.eclipse.mylyn.tasks.ui.workingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1449077314914_1" label="tasks" name="tasks"/>
-<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1444017848490_0" label="Window Working Set" name="Aggregate for window 1444017848488">
-<workingSet IMemento.internal.id="tasks"/>
-</workingSet>
-</workingSetManager>
