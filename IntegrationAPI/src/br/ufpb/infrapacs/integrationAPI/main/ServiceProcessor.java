@@ -25,6 +25,7 @@ public class ServiceProcessor {
 		try {
 			obj.setTimestamp(System.currentTimeMillis()+"");			
 			
+			//TODO alterar esse funcionamento.
 			if (smtpAuthenticatorStrategy == null) {
 				smtpAuthenticatorStrategy =  new SMTPAuthenticatorStrategy(props.getProperty(EMAIL), props.getProperty(PASSWORD));
 			}
