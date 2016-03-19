@@ -1,9 +1,9 @@
-package br.ufpb.infrapacs.integrationAPI.tests;
+package br.ufpb.dicomflow.integrationAPI.tests;
 
 import org.junit.Test;
 
-import br.ufpb.infrapacs.integrationAPI.conf.IntegrationAPIProperties;
-import br.ufpb.infrapacs.integrationAPI.exceptions.PropertyNotFoundException;
+import br.ufpb.dicomflow.integrationAPI.conf.IntegrationAPIProperties;
+import br.ufpb.dicomflow.integrationAPI.exceptions.PropertyNotFoundException;
 
 public class UtilTestCase extends GenericTestCase {
 	

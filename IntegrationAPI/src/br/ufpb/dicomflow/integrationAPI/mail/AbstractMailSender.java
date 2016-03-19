@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.mail;
+package br.ufpb.dicomflow.integrationAPI.mail;
 
 import java.util.Properties;
 
@@ -7,8 +7,8 @@ import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 
-import br.ufpb.infrapacs.integrationAPI.mail.impl.MailXTags;
-import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.MailXTags;
+import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
 public abstract class AbstractMailSender implements MailSenderIF{
 	

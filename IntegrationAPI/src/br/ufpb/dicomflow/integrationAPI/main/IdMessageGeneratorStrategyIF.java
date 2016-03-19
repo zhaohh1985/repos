@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.main;
+package br.ufpb.dicomflow.integrationAPI.main;
 
 public interface IdMessageGeneratorStrategyIF {
 	

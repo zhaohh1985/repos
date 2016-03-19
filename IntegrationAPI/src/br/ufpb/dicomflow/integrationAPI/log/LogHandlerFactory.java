@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.log;
+package br.ufpb.dicomflow.integrationAPI.log;
 
 import java.util.ArrayList;
 import java.util.List;

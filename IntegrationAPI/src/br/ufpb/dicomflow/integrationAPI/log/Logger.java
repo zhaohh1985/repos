@@ -1,10 +1,10 @@
-package br.ufpb.infrapacs.integrationAPI.log;
+package br.ufpb.dicomflow.integrationAPI.log;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.ufpb.infrapacs.integrationAPI.conf.IntegrationAPIProperties;
+import br.ufpb.dicomflow.integrationAPI.conf.IntegrationAPIProperties;
 
 public class Logger {
 

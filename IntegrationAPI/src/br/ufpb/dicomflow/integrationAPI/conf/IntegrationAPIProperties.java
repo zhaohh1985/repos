@@ -1,10 +1,10 @@
-package br.ufpb.infrapacs.integrationAPI.conf;
+package br.ufpb.dicomflow.integrationAPI.conf;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-import br.ufpb.infrapacs.integrationAPI.exceptions.PropertyNotFoundException;
+import br.ufpb.dicomflow.integrationAPI.exceptions.PropertyNotFoundException;
 
 public class IntegrationAPIProperties {
 	

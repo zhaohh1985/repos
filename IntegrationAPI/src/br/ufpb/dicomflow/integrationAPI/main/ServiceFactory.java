@@ -1,11 +1,11 @@
-package br.ufpb.infrapacs.integrationAPI.main;
+package br.ufpb.dicomflow.integrationAPI.main;
 
-import br.ufpb.infrapacs.integrationAPI.exceptions.ServiceCreationException;
-import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
-import br.ufpb.infrapacs.integrationAPI.message.xml.StorageDelete;
-import br.ufpb.infrapacs.integrationAPI.message.xml.StorageResult;
-import br.ufpb.infrapacs.integrationAPI.message.xml.StorageSave;
-import br.ufpb.infrapacs.integrationAPI.message.xml.StorageUpdate;
+import br.ufpb.dicomflow.integrationAPI.exceptions.ServiceCreationException;
+import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
+import br.ufpb.dicomflow.integrationAPI.message.xml.StorageDelete;
+import br.ufpb.dicomflow.integrationAPI.message.xml.StorageResult;
+import br.ufpb.dicomflow.integrationAPI.message.xml.StorageSave;
+import br.ufpb.dicomflow.integrationAPI.message.xml.StorageUpdate;
 /**
  * Class for creating services
  * @author Danilo

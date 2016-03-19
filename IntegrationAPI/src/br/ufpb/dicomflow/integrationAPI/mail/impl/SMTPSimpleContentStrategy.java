@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.mail.impl;
+package br.ufpb.dicomflow.integrationAPI.mail.impl;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -15,9 +15,9 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.stream.StreamSource;
 
-import br.ufpb.infrapacs.integrationAPI.mail.MailContentStrategyIF;
-import br.ufpb.infrapacs.integrationAPI.main.ServiceFactory;
-import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.main.ServiceFactory;
+import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
 public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
 

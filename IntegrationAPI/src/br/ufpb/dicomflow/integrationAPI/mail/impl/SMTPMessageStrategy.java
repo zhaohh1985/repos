@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.mail.impl;
+package br.ufpb.dicomflow.integrationAPI.mail.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,8 +11,8 @@ import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
 
-import br.ufpb.infrapacs.integrationAPI.mail.FilterIF;
-import br.ufpb.infrapacs.integrationAPI.mail.MailMessageStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.FilterIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailMessageStrategyIF;
 
 public class SMTPMessageStrategy implements MailMessageStrategyIF {
 	

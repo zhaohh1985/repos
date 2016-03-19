@@ -1,16 +1,16 @@
-package br.ufpb.infrapacs.integrationAPI.main;
+package br.ufpb.dicomflow.integrationAPI.main;
 
 import java.util.Properties;
 
-import br.ufpb.infrapacs.integrationAPI.exceptions.ServiceCreationException;
-import br.ufpb.infrapacs.integrationAPI.mail.MailAuthenticatorIF;
-import br.ufpb.infrapacs.integrationAPI.mail.MailContentStrategyIF;
-import br.ufpb.infrapacs.integrationAPI.mail.MailHeadStrategyIF;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPAuthenticatorStrategy;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPHeadStrategy;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPSender;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPSimpleContentStrategy;
-import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
+import br.ufpb.dicomflow.integrationAPI.exceptions.ServiceCreationException;
+import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPAuthenticatorStrategy;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPHeadStrategy;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSender;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSimpleContentStrategy;
+import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
 public class ServiceProcessor {
 	

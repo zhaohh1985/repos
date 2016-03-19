@@ -1,10 +1,10 @@
-package br.ufpb.infrapacs.integrationAPI.mail.impl;
+package br.ufpb.dicomflow.integrationAPI.mail.impl;
 
 import java.util.Properties;
 
-import br.ufpb.infrapacs.integrationAPI.mail.AbstractMailReceiver;
-import br.ufpb.infrapacs.integrationAPI.mail.MailAuthenticatorIF;
-import br.ufpb.infrapacs.integrationAPI.mail.MailMessageStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.AbstractMailReceiver;
+import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailMessageStrategyIF;
 
 public class SMTPReceiver extends AbstractMailReceiver{
 	

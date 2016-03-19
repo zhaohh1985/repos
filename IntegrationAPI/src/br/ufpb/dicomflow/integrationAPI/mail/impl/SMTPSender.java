@@ -1,11 +1,11 @@
-package br.ufpb.infrapacs.integrationAPI.mail.impl;
+package br.ufpb.dicomflow.integrationAPI.mail.impl;
 
 import java.util.Properties;
 
-import br.ufpb.infrapacs.integrationAPI.mail.AbstractMailSender;
-import br.ufpb.infrapacs.integrationAPI.mail.MailAuthenticatorIF;
-import br.ufpb.infrapacs.integrationAPI.mail.MailContentStrategyIF;
-import br.ufpb.infrapacs.integrationAPI.mail.MailHeadStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.AbstractMailSender;
+import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
 
 public class SMTPSender extends AbstractMailSender {
 	

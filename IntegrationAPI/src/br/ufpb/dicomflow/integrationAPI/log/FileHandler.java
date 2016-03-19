@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.log;
+package br.ufpb.dicomflow.integrationAPI.log;
 
 import java.io.FileWriter;
 import java.io.IOException;

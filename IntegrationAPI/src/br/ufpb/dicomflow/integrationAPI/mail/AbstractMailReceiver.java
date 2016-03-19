@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.mail;
+package br.ufpb.dicomflow.integrationAPI.mail;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,9 +13,9 @@ import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Session;
 
-import br.ufpb.infrapacs.integrationAPI.mail.impl.MailContentStrategyFactory;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.MailXTags;
-import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.MailContentStrategyFactory;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.MailXTags;
+import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
 public abstract class AbstractMailReceiver implements MailReceiverIF {
 

@@ -1,6 +1,6 @@
-package br.ufpb.infrapacs.integrationAPI.mail.impl;
+package br.ufpb.dicomflow.integrationAPI.mail.impl;
 
-import br.ufpb.infrapacs.integrationAPI.mail.MailHeadStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
 
 public class MailHeadStrategyFactory {
 	

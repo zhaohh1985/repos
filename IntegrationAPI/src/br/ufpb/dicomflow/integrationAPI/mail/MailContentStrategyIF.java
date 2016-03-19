@@ -1,8 +1,8 @@
-package br.ufpb.infrapacs.integrationAPI.mail;
+package br.ufpb.dicomflow.integrationAPI.mail;
 
 import javax.mail.Multipart;
 
-import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
+import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
 public interface MailContentStrategyIF {
 	

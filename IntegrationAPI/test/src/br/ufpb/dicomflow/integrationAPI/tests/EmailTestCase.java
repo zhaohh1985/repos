@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.tests;
+package br.ufpb.dicomflow.integrationAPI.tests;
 
 import java.io.File;
 import java.io.StringWriter;
@@ -25,22 +25,22 @@ import javax.xml.bind.Marshaller;
 
 import org.junit.Test;
 
-import br.ufpb.infrapacs.integrationAPI.mail.MailAuthenticatorIF;
-import br.ufpb.infrapacs.integrationAPI.mail.MailContentStrategyIF;
-import br.ufpb.infrapacs.integrationAPI.mail.MailHeadStrategyIF;
-import br.ufpb.infrapacs.integrationAPI.mail.MailMessageStrategyIF;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPAuthenticatorStrategy;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPHeadStrategy;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPMessageStrategy;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPReceiver;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPSender;
-import br.ufpb.infrapacs.integrationAPI.mail.impl.SMTPSimpleContentStrategy;
-import br.ufpb.infrapacs.integrationAPI.main.DefaultIdMessageGeneratorStrategy;
-import br.ufpb.infrapacs.integrationAPI.main.ServiceFactory;
-import br.ufpb.infrapacs.integrationAPI.message.xml.Credentials;
-import br.ufpb.infrapacs.integrationAPI.message.xml.Object;
-import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
-import br.ufpb.infrapacs.integrationAPI.message.xml.StorageDelete;
+import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailMessageStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPAuthenticatorStrategy;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPHeadStrategy;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPMessageStrategy;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPReceiver;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSender;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSimpleContentStrategy;
+import br.ufpb.dicomflow.integrationAPI.main.DefaultIdMessageGeneratorStrategy;
+import br.ufpb.dicomflow.integrationAPI.main.ServiceFactory;
+import br.ufpb.dicomflow.integrationAPI.message.xml.Credentials;
+import br.ufpb.dicomflow.integrationAPI.message.xml.Object;
+import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
+import br.ufpb.dicomflow.integrationAPI.message.xml.StorageDelete;
 
 public class EmailTestCase extends GenericTestCase {
 	

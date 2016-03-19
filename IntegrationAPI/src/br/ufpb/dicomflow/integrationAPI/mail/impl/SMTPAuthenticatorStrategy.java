@@ -1,9 +1,9 @@
-package br.ufpb.infrapacs.integrationAPI.mail.impl;
+package br.ufpb.dicomflow.integrationAPI.mail.impl;
 
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 
-import br.ufpb.infrapacs.integrationAPI.mail.MailAuthenticatorIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
 
 public class SMTPAuthenticatorStrategy implements MailAuthenticatorIF{
 	

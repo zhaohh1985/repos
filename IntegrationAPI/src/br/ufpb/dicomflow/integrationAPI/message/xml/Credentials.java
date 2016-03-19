@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.message.xml;
+package br.ufpb.dicomflow.integrationAPI.message.xml;
 
 import javax.xml.bind.annotation.XmlType;
 

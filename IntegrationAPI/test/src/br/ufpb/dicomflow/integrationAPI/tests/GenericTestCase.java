@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.tests;
+package br.ufpb.dicomflow.integrationAPI.tests;
 
 import java.io.File;
 import java.io.IOException;

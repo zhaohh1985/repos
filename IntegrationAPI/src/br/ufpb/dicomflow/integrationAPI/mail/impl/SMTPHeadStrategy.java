@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.mail.impl;
+package br.ufpb.dicomflow.integrationAPI.mail.impl;
 
 import javax.mail.Address;
 import javax.mail.Message;
@@ -8,8 +8,8 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import br.ufpb.infrapacs.integrationAPI.mail.MailHeadStrategyIF;
-import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
 public class SMTPHeadStrategy implements MailHeadStrategyIF {
 

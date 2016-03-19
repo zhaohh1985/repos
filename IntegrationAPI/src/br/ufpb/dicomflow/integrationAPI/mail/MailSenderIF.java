@@ -1,4 +1,4 @@
-package br.ufpb.infrapacs.integrationAPI.mail;
+package br.ufpb.dicomflow.integrationAPI.mail;
 
 import java.util.Properties;
 

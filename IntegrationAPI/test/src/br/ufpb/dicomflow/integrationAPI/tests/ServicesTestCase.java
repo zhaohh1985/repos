@@ -1,15 +1,15 @@
-package br.ufpb.infrapacs.integrationAPI.tests;
+package br.ufpb.dicomflow.integrationAPI.tests;
 
 import java.util.Properties;
 
 import org.junit.Test;
 
-import br.ufpb.infrapacs.integrationAPI.exceptions.ServiceCreationException;
-import br.ufpb.infrapacs.integrationAPI.main.DefaultIdMessageGeneratorStrategy;
-import br.ufpb.infrapacs.integrationAPI.main.ServiceFactory;
-import br.ufpb.infrapacs.integrationAPI.main.ServiceProcessor;
-import br.ufpb.infrapacs.integrationAPI.message.xml.ServiceIF;
-import br.ufpb.infrapacs.integrationAPI.message.xml.StorageDelete;
+import br.ufpb.dicomflow.integrationAPI.exceptions.ServiceCreationException;
+import br.ufpb.dicomflow.integrationAPI.main.DefaultIdMessageGeneratorStrategy;
+import br.ufpb.dicomflow.integrationAPI.main.ServiceFactory;
+import br.ufpb.dicomflow.integrationAPI.main.ServiceProcessor;
+import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
+import br.ufpb.dicomflow.integrationAPI.message.xml.StorageDelete;
 
 public class ServicesTestCase extends GenericTestCase {
 	
