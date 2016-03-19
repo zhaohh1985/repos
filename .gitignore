@@ -43,3 +43,4 @@ org.eclipse*
 # eclipse specific git ignore #
 ######################
 .metadata
+RemoteSystemsTempFiles
