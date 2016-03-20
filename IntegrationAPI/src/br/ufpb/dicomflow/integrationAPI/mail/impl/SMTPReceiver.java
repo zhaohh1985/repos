@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import br.ufpb.dicomflow.integrationAPI.mail.AbstractMailReceiver;
 import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
 import br.ufpb.dicomflow.integrationAPI.mail.MailMessageStrategyIF;
 
 public class SMTPReceiver extends AbstractMailReceiver{
@@ -11,6 +12,7 @@ public class SMTPReceiver extends AbstractMailReceiver{
 	private Properties properties;
 	private MailAuthenticatorIF authenticatorBuilder;
 	private MailMessageStrategyIF messageBuilder;
+	private MailHeadStrategyIF headBuilder;
 	
 	@Override
 	public Properties getProperties() {
@@ -35,6 +37,17 @@ public class SMTPReceiver extends AbstractMailReceiver{
 	public void setMessageBuilder(MailMessageStrategyIF messageBuilder) {
 		this.messageBuilder = messageBuilder;
 	}
+	
+	@Override
+	public MailHeadStrategyIF getHeadBuilder() {
+		return headBuilder;
+	}
+	
+	public void setHeadBuilder(MailHeadStrategyIF headBuilder) {
+		this.headBuilder = headBuilder;
+	}
+	
+	
 
 	
 
