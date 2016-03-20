@@ -1,13 +1,15 @@
 package br.ufpb.dicomflow.integrationAPI.mail.impl;
 
+import java.util.Enumeration;
+
 import javax.mail.Address;
+import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
+import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
 import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
 import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
@@ -30,8 +32,7 @@ public class SMTPHeadStrategy implements MailHeadStrategyIF {
 	}
 	
 	@Override
-	public Message getMessage(Session session, ServiceIF service) {
-		Message message = new MimeMessage(session);
+	public Message buildHead(Message message, ServiceIF service, MailContentStrategyIF contentBuilder) {
         try {
 			message.setFrom(new InternetAddress(this.from));
 			
@@ -42,6 +43,8 @@ public class SMTPHeadStrategy implements MailHeadStrategyIF {
 	        
 	        message.addHeader(MailXTags.MESSAGE_ID_X_TAG, service.getMessageID()+"@"+this.domain);
 	        message.addHeader(MailXTags.SERVICE_TYPE_X_TAG, String.valueOf(service.getType()));
+	        //message.addHeader(MailXTags.HEAD_BUILDER_X_TAG, String.valueOf(this.getType()));
+			message.addHeader(MailXTags.CONTENT_BUILDER_X_TAG, String.valueOf(contentBuilder.getType()));
 	        
 	        
 		} catch (AddressException e) {
@@ -78,6 +81,26 @@ public class SMTPHeadStrategy implements MailHeadStrategyIF {
 	
 	public int getType(){
 		return MailHeadStrategyIF.SMTP_HEAD_STRATEGY;
+	}
+	
+	public String getHeaderValue(Message message, String header) {
+		try {
+
+			Enumeration headers = message.getAllHeaders();
+
+			while (headers.hasMoreElements()) {
+				Header h = (Header) headers.nextElement();
+
+				if (h.getName().contains(header)) {
+					return h.getValue();
+				}
+			}
+
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 	
 	

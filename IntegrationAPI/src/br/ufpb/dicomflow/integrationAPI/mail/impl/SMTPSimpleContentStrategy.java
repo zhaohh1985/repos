@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Part;
@@ -22,7 +23,7 @@ import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
 
 	@Override
-	public Multipart getContent(ServiceIF service) {
+	public Message buildContent(Message message, ServiceIF service) {
 		Multipart multipart = null;
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(service.getClass());
@@ -43,6 +44,8 @@ public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
             
             multipart.addBodyPart(attachment0);
             
+            message.setContent(multipart);
+            
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		} catch (MessagingException e) {
@@ -50,7 +53,7 @@ public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
 		}
 		
 		
-		return multipart;
+		return message;
 
 	}
 	

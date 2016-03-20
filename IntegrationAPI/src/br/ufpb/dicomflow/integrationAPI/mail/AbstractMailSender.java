@@ -1,53 +1,48 @@
 package br.ufpb.dicomflow.integrationAPI.mail;
-
 import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.MimeMessage;
 
-import br.ufpb.dicomflow.integrationAPI.mail.impl.MailXTags;
 import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
-public abstract class AbstractMailSender implements MailSenderIF{
-	
-	public void send(ServiceIF service) {
-		
-		try {
-			Session session = Session.getDefaultInstance(getProperties(), getAuthenticatorBuilder().getAuthenticator());
-			session.setDebug(true);
-			
-			Message message = getHeadBuilder().getMessage(session, service);
-			message.setHeader(MailXTags.HEAD_BUILDER_X_TAG, String.valueOf(getHeadBuilder().getType()));
-			message.setHeader(MailXTags.CONTENT_BUILDER_X_TAG, String.valueOf(getContentBuilder().getType()));
-			message.setContent(getContentBuilder().getContent(service));
-			
-			Transport.send(message);
-			
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		} catch (NullPointerException e){
-			e.printStackTrace();
+public abstract class AbstractMailSender implements MailSenderIF {
+
+		public void send(ServiceIF service) {
+
+			try {
+				Session session = Session.getDefaultInstance(getProperties(),
+						getAuthenticatorBuilder().getAuthenticator());
+				session.setDebug(true);
+				
+				Message message = new MimeMessage(session);
+
+				message = getHeadBuilder().buildHead(message, service, getContentBuilder());
+				message = getContentBuilder().buildContent(message, service);
+				
+				Transport.send(message);
+
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+
 		}
-		
-		
-		
-		
-		
-	}
 
-	@Override
-	public abstract Properties getProperties();
+		@Override
+		public abstract Properties getProperties();
 
-	@Override
-	public abstract MailAuthenticatorIF getAuthenticatorBuilder();
+		@Override
+		public abstract MailAuthenticatorIF getAuthenticatorBuilder();
 
-	@Override
-	public abstract MailHeadStrategyIF getHeadBuilder();
-	
-	@Override
-	public abstract MailContentStrategyIF getContentBuilder();
-	
-	
+		@Override
+		public abstract MailHeadStrategyIF getHeadBuilder();
+
+		@Override
+		public abstract MailContentStrategyIF getContentBuilder();
+
 }
