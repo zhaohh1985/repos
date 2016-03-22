@@ -14,7 +14,7 @@ public abstract class AbstractMailSender implements MailSenderIF {
 		public void send(ServiceIF service) {
 
 			try {
-				Session session = Session.getDefaultInstance(getProperties(),
+				Session session = Session.getInstance(getProperties(),
 						getAuthenticatorBuilder().getAuthenticator());
 				session.setDebug(true);
 				

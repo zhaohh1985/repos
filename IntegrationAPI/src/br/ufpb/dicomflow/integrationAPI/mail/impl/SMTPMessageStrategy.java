@@ -16,14 +16,13 @@ import br.ufpb.dicomflow.integrationAPI.mail.MailMessageStrategyIF;
 
 public class SMTPMessageStrategy implements MailMessageStrategyIF {
 	
-	private String provider;
 	private String hostProvider;
 	private String folderName;
 
 	 
 	
-	public SMTPMessageStrategy(String provider, String hostProvider,String folderName) {
-		this.provider = provider;
+	public SMTPMessageStrategy(String hostProvider,String folderName) {
+//		this.provider = provider;
 		this.hostProvider = hostProvider;
 		this.folderName = folderName;
 	}
@@ -36,7 +35,7 @@ public class SMTPMessageStrategy implements MailMessageStrategyIF {
 		try {
 			
 			
-			Store store = session.getStore(this.provider);
+			Store store = session.getStore(/*this.provider*/);
 			store.connect(this.hostProvider, null, null);
 
 		    Folder folder = store.getFolder(this.folderName);
@@ -63,13 +62,13 @@ public class SMTPMessageStrategy implements MailMessageStrategyIF {
 		return messages;
 	}
 
-	public String getProvider() {
-		return provider;
-	}
-
-	public void setProvider(String provider) {
-		this.provider = provider;
-	}
+//	public String getProvider() {
+//		return provider;
+//	}
+//
+//	public void setProvider(String provider) {
+//		this.provider = provider;
+//	}
 
 	public String getHostProvider() {
 		return hostProvider;

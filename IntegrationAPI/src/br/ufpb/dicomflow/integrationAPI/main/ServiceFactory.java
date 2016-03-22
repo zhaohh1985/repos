@@ -1,6 +1,7 @@
 package br.ufpb.dicomflow.integrationAPI.main;
 
 import br.ufpb.dicomflow.integrationAPI.exceptions.ServiceCreationException;
+import br.ufpb.dicomflow.integrationAPI.message.xml.BasicService;
 import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 import br.ufpb.dicomflow.integrationAPI.message.xml.StorageDelete;
 import br.ufpb.dicomflow.integrationAPI.message.xml.StorageResult;
@@ -15,7 +16,7 @@ public class ServiceFactory {
 	/**
 	 * Strategy of building services. Create a corresponding service provided identifier
 	 * @param serviceType provided Identifier
-	 * @return returns the Service or null if the serviceId is invalid 
+	 * @return returns the Service. If serviceType is undefined returns a basic Service with serviceType
 	 */
 	public static ServiceIF createService(int serviceType){
 		
@@ -34,6 +35,8 @@ public class ServiceFactory {
 			service = createStorageResult();
 			break;			
 		default:
+			service = new BasicService();
+			service.setType(serviceType);
 			break;
 		}
 		
@@ -42,13 +45,13 @@ public class ServiceFactory {
 	
 	/**
 	 * Strategy of building services. Create a corresponding service provided identifier
-	 * @param serviceId provided Identifier
+	 * @param serviceType provided Identifier
 	 * @param idMessageGenerator Strategy to generate messageID
 	 * @return returns the Service or null if the serviceId is invalid 
 	 */
-	public static ServiceIF createService(int serviceId, IdMessageGeneratorStrategyIF idMessageGenerator){
+	public static ServiceIF createService(int serviceType, IdMessageGeneratorStrategyIF idMessageGenerator){
 		
-		ServiceIF service = createService(serviceId);
+		ServiceIF service = createService(serviceType);
 		
 		if(service != null){
 			service.setMessageID(idMessageGenerator.getNextId());
