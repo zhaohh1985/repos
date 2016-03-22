@@ -36,7 +36,7 @@ public abstract class AbstractMailReceiver implements MailReceiverIF {
 
 			try {
 
-				Session session = Session.getDefaultInstance(getProperties(), getAuthenticatorBuilder().getAuthenticator());
+				Session session = Session.getInstance(getProperties(), getAuthenticatorBuilder().getAuthenticator());
 
 				List<Message> messages = getMessageBuilder().getMessages(session, filter);
 

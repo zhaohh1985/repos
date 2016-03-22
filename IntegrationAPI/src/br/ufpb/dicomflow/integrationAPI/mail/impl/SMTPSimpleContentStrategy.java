@@ -3,6 +3,7 @@ package br.ufpb.dicomflow.integrationAPI.mail.impl;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.rmi.UnmarshalException;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -19,6 +20,8 @@ import javax.xml.transform.stream.StreamSource;
 import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
 import br.ufpb.dicomflow.integrationAPI.main.ServiceFactory;
 import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
+import br.ufpb.dicomflow.integrationAPI.message.xml.UnknownService;
+import br.ufpb.dicomflow.integrationAPI.tests.NewService;
 
 public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
 
@@ -75,11 +78,18 @@ public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
 					
 					StringBuffer xmlStr = new StringBuffer();
 					xmlStr.append(part.getContent().toString());
+					System.out.println("O XML DO SERVICO \n" + xmlStr);
 
-					ServiceIF service = ServiceFactory.createService(type);
-					JAXBContext jaxbContext = JAXBContext.newInstance(service.getClass());
-					Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-					service = (ServiceIF) jaxbUnmarshaller.unmarshal(new StreamSource( new StringReader( xmlStr.toString() ) ));
+					ServiceIF service;
+					try {
+						service = ServiceFactory.createService(type);
+						JAXBContext jaxbContext = JAXBContext.newInstance(service.getClass());
+						Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+					
+						service = (ServiceIF) jaxbUnmarshaller.unmarshal(new StreamSource( new StringReader( xmlStr.toString() ) ));
+					} catch (JAXBException e) {
+						return new UnknownService(e.getMessage());
+					}
 					
 					return service;										
 				}
@@ -88,8 +98,6 @@ public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
 		

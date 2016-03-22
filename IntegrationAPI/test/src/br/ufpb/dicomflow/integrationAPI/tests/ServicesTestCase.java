@@ -14,7 +14,7 @@ import br.ufpb.dicomflow.integrationAPI.message.xml.StorageDelete;
 public class ServicesTestCase extends GenericTestCase {
 	
 	@Test
-	private static void testDelete() {
+	public static void testDelete() {
 		StorageDelete obj = (StorageDelete) ServiceFactory.createService(ServiceIF.STORAGE_DELETE, DefaultIdMessageGeneratorStrategy.getInstance());// new StorageDelete();
 
 		Properties props = new Properties();        		
@@ -30,7 +30,7 @@ public class ServicesTestCase extends GenericTestCase {
         props.put(ServiceProcessor.EMAIL, "protocolointegracao@gmail.com");
         props.put(ServiceProcessor.PASSWORD, "pr0t0c0l0ap1");
         props.put(ServiceProcessor.FROM, "protocolointegracao@gmail.com");
-        props.put(ServiceProcessor.TO, "juracylucena@gmail.com");
+        props.put(ServiceProcessor.TO, "dicomflow@gmail.com");
         props.put(ServiceProcessor.DOMAIN, "dominio.com");                
 
 		
