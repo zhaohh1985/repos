@@ -14,9 +14,9 @@ import javax.xml.bind.Marshaller;
 import org.junit.Test;
 
 import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailMessageStrategyIF;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPAuthenticatorStrategy;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPMessageStrategy;
+import br.ufpb.dicomflow.integrationAPI.mail.MailMessageReaderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPAuthenticator;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPMessageReader;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPReceiver;
 import br.ufpb.dicomflow.integrationAPI.message.xml.Completed;
 import br.ufpb.dicomflow.integrationAPI.message.xml.Credentials;

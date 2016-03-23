@@ -11,7 +11,7 @@ import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Session;
 
-import br.ufpb.dicomflow.integrationAPI.mail.impl.MailContentStrategyFactory;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.MailContentBuilderFactory;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.MailXTags;
 import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
@@ -19,15 +19,15 @@ public abstract class AbstractMailReceiver implements MailReceiverIF {
 
 		@Override
 		public abstract Properties getProperties();
-		
-		@Override
-		public abstract MailHeadStrategyIF  getHeadBuilder();
 
 		@Override
-		public abstract MailMessageStrategyIF getMessageBuilder();
+		public abstract MailMessageReaderIF getMessageReader();
 		
 		@Override
 		public abstract MailAuthenticatorIF getAuthenticatorBuilder();
+		
+		@Override
+		public abstract MailServiceExtractorIF getServiceExtractor();
 
 		@Override
 		public Iterator<ServiceIF> receive(FilterIF filter) {
@@ -38,28 +38,13 @@ public abstract class AbstractMailReceiver implements MailReceiverIF {
 
 				Session session = Session.getInstance(getProperties(), getAuthenticatorBuilder().getAuthenticator());
 
-				List<Message> messages = getMessageBuilder().getMessages(session, filter);
+				List<Message> messages = getMessageReader().getMessages(session, filter);
 
-				Iterator<Message> iterator = messages.iterator();
-				while (iterator.hasNext()) {
-					Message message = (Message) iterator.next();
+				services = getServiceExtractor().getServices(messages);
 
-					int contentType = Integer.valueOf(getHeadBuilder().getHeaderValue(message, MailXTags.CONTENT_BUILDER_X_TAG));
-					MailContentStrategyIF contentStrategy = MailContentStrategyFactory.createContentStrategy(contentType);
-
-					int serviceType = Integer.valueOf(getHeadBuilder().getHeaderValue(message,MailXTags.SERVICE_TYPE_X_TAG));
-					ServiceIF service = contentStrategy.getService((Multipart) message.getContent(), serviceType);
-					
-					services.add(service);
-
-				}
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (MessagingException e) {
-				e.printStackTrace();
 			} catch (NullPointerException e) {
 				e.printStackTrace();
+				return new ArrayList<ServiceIF>().iterator();
 			}
 
 			return services.iterator();

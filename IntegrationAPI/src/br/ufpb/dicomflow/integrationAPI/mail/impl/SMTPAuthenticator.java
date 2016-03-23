@@ -5,14 +5,14 @@ import javax.mail.PasswordAuthentication;
 
 import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
 
-public class SMTPAuthenticatorStrategy implements MailAuthenticatorIF{
+public class SMTPAuthenticator implements MailAuthenticatorIF{
 	
 	private String email;
 	private String password;
 	private Authenticator authenticator;
 	
 	
-	public SMTPAuthenticatorStrategy(String mail, String passwd){
+	public SMTPAuthenticator(String mail, String passwd){
 		this.email = mail;
 		this.password = passwd;
 		this.authenticator = new javax.mail.Authenticator() {

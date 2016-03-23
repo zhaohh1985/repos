@@ -4,15 +4,16 @@ import java.util.Properties;
 
 import br.ufpb.dicomflow.integrationAPI.mail.AbstractMailReceiver;
 import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailMessageStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadBuilderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailMessageReaderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailServiceExtractorIF;
 
 public class SMTPReceiver extends AbstractMailReceiver{
 	
 	private Properties properties;
 	private MailAuthenticatorIF authenticatorBuilder;
-	private MailMessageStrategyIF messageBuilder;
-	private MailHeadStrategyIF headBuilder;
+	private MailMessageReaderIF messageReader;
+	private MailServiceExtractorIF serviceExtractor;
 	
 	@Override
 	public Properties getProperties() {
@@ -31,21 +32,23 @@ public class SMTPReceiver extends AbstractMailReceiver{
 	}
 	
 	@Override
-	public MailMessageStrategyIF getMessageBuilder() {
-		return messageBuilder;
+	public MailMessageReaderIF getMessageReader() {
+		return messageReader;
 	}
-	public void setMessageBuilder(MailMessageStrategyIF messageBuilder) {
-		this.messageBuilder = messageBuilder;
+	public void setMessageReader(MailMessageReaderIF messageBuilder) {
+		this.messageReader = messageBuilder;
 	}
 	
 	@Override
-	public MailHeadStrategyIF getHeadBuilder() {
-		return headBuilder;
+	public MailServiceExtractorIF getServiceExtractor() {
+		return serviceExtractor;
 	}
 	
-	public void setHeadBuilder(MailHeadStrategyIF headBuilder) {
-		this.headBuilder = headBuilder;
+	public void setServiceExtractor(MailServiceExtractorIF serviceExtractor) {
+		this.serviceExtractor = serviceExtractor;
 	}
+	
+	
 	
 	
 

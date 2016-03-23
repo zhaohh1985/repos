@@ -4,12 +4,12 @@ import java.util.Properties;
 
 import br.ufpb.dicomflow.integrationAPI.exceptions.ServiceCreationException;
 import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPAuthenticatorStrategy;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPHeadStrategy;
+import br.ufpb.dicomflow.integrationAPI.mail.MailContentBuilderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadBuilderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPAuthenticator;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPHeadBuilder;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSender;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSimpleContentStrategy;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPContentBuilder;
 import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
 public class ServiceProcessor {
@@ -20,20 +20,20 @@ public class ServiceProcessor {
 	public static final String TO = "to";
 	public static final String DOMAIN = "domain";
 
-	public static void sendMessage(ServiceIF obj, Properties props, MailAuthenticatorIF smtpAuthenticatorStrategy, MailHeadStrategyIF smtpHeadStrategy, MailContentStrategyIF smtpSimpleContentStrategy) throws ServiceCreationException {
+	public static void sendMessage(ServiceIF obj, Properties props, MailAuthenticatorIF smtpAuthenticatorStrategy, MailHeadBuilderIF smtpHeadStrategy, MailContentBuilderIF smtpSimpleContentStrategy) throws ServiceCreationException {
 		
 		try {
 			obj.setTimestamp(System.currentTimeMillis()+"");			
 			
 			//TODO alterar esse funcionamento.
 			if (smtpAuthenticatorStrategy == null) {
-				smtpAuthenticatorStrategy =  new SMTPAuthenticatorStrategy(props.getProperty(EMAIL), props.getProperty(PASSWORD));
+				smtpAuthenticatorStrategy =  new SMTPAuthenticator(props.getProperty(EMAIL), props.getProperty(PASSWORD));
 			}
 			if (smtpHeadStrategy == null) {
-				smtpHeadStrategy = new SMTPHeadStrategy(props.getProperty(FROM), props.getProperty(TO), props.getProperty(DOMAIN));
+				smtpHeadStrategy = new SMTPHeadBuilder(props.getProperty(FROM), props.getProperty(TO), props.getProperty(DOMAIN));
 			}
 			if (smtpSimpleContentStrategy == null) {
-				smtpSimpleContentStrategy = new SMTPSimpleContentStrategy();
+				smtpSimpleContentStrategy = new SMTPContentBuilder();
 			}	        	      
 	        
 	        SMTPSender sender = new SMTPSender();

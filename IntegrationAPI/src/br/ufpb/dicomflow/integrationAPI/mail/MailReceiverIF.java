@@ -8,9 +8,8 @@ public interface MailReceiverIF extends ReceiverIF{
 	
 	public MailAuthenticatorIF getAuthenticatorBuilder();
 	
-	public MailMessageStrategyIF getMessageBuilder();
+	public MailMessageReaderIF getMessageReader();
 	
-	public MailHeadStrategyIF  getHeadBuilder();
-
+	public MailServiceExtractorIF getServiceExtractor();
 	
 }

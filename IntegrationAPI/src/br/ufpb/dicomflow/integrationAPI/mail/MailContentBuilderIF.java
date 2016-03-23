@@ -5,7 +5,7 @@ import javax.mail.Multipart;
 
 import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
-public interface MailContentStrategyIF {
+public interface MailContentBuilderIF {
 	
 	public static final int SMTP_SIMPLE_CONTENT_STRATEGY = 1;
 	

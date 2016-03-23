@@ -5,7 +5,7 @@ import java.util.List;
 import javax.mail.Message;
 import javax.mail.Session;
 
-public interface MailMessageStrategyIF {
+public interface MailMessageReaderIF {
 	
 	public static final int SMTP_MESSAGE_STRATEGY = 1;
 
