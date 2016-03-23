@@ -4,15 +4,15 @@ import java.util.Properties;
 
 import br.ufpb.dicomflow.integrationAPI.mail.AbstractMailSender;
 import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailContentBuilderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadBuilderIF;
 
 public class SMTPSender extends AbstractMailSender {
 	
 	private Properties properties;
 	private MailAuthenticatorIF authenticatorBuilder;
-	private MailHeadStrategyIF headBuilder;
-	private MailContentStrategyIF contentBuilder;
+	private MailHeadBuilderIF headBuilder;
+	private MailContentBuilderIF contentBuilder;
 
 	@Override
 	public Properties getProperties() {
@@ -25,12 +25,12 @@ public class SMTPSender extends AbstractMailSender {
 	}
 
 	@Override
-	public MailHeadStrategyIF getHeadBuilder() {
+	public MailHeadBuilderIF getHeadBuilder() {
 		return this.headBuilder;
 	}
 
 	@Override
-	public MailContentStrategyIF getContentBuilder() {
+	public MailContentBuilderIF getContentBuilder() {
 		return this.contentBuilder;
 	}
 
@@ -42,11 +42,11 @@ public class SMTPSender extends AbstractMailSender {
 		this.authenticatorBuilder = authenticatorBuilder;
 	}
 
-	public void setHeadBuilder(MailHeadStrategyIF headBuilder) {
+	public void setHeadBuilder(MailHeadBuilderIF headBuilder) {
 		this.headBuilder = headBuilder;
 	}
 
-	public void setContentBuilder(MailContentStrategyIF contentBuilder) {
+	public void setContentBuilder(MailContentBuilderIF contentBuilder) {
 		this.contentBuilder = contentBuilder;
 	}
 

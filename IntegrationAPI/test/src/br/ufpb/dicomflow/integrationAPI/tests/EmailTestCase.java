@@ -26,15 +26,17 @@ import javax.xml.bind.Marshaller;
 import org.junit.Test;
 
 import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailMessageStrategyIF;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPAuthenticatorStrategy;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPHeadStrategy;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPMessageStrategy;
+import br.ufpb.dicomflow.integrationAPI.mail.MailContentBuilderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadBuilderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailMessageReaderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailServiceExtractorIF;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPAuthenticator;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPHeadBuilder;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPMessageReader;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPReceiver;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSender;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSimpleContentStrategy;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPContentBuilder;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPServiceExtractor;
 import br.ufpb.dicomflow.integrationAPI.main.DefaultIdMessageGeneratorStrategy;
 import br.ufpb.dicomflow.integrationAPI.main.ServiceFactory;
 import br.ufpb.dicomflow.integrationAPI.message.xml.Credentials;
@@ -60,14 +62,14 @@ public class EmailTestCase extends GenericTestCase {
 		props.put("mail.imap.socketFactory.fallback", "false");
 		props.put("mail.store.protocol", "imaps");
 		
-		MailAuthenticatorIF smtpAuthenticatorStrategy =  new SMTPAuthenticatorStrategy("protocolointegracao@gmail.com", "pr0t0c0l0ap1");
-		MailMessageStrategyIF smtpMesssaStrategy = new SMTPMessageStrategy("imap.googlemail.com", "INBOX");
-		MailHeadStrategyIF smtpHeadStrategy = new SMTPHeadStrategy();
+		MailAuthenticatorIF smtpAuthenticatorStrategy =  new SMTPAuthenticator("protocolointegracao@gmail.com", "pr0t0c0l0ap1");
+		MailMessageReaderIF smtpMesssaStrategy = new SMTPMessageReader("imap.googlemail.com", "INBOX");
+		MailServiceExtractorIF serviceExtractor = new SMTPServiceExtractor();
 		SMTPReceiver receiver = new SMTPReceiver();
 		receiver.setProperties(props);
 		receiver.setAuthenticatorBuilder(smtpAuthenticatorStrategy);
-		receiver.setMessageBuilder(smtpMesssaStrategy);
-		receiver.setHeadBuilder(smtpHeadStrategy);
+		receiver.setMessageReader(smtpMesssaStrategy);
+		receiver.setServiceExtractor(serviceExtractor);
 		
 		Iterator<ServiceIF> iterator = receiver.receive(null);
 		
@@ -219,9 +221,9 @@ public class EmailTestCase extends GenericTestCase {
         props.put("mail.debug", "true");
         props.put("mail.smtp.socketFactory.fallback", "false");
 
-        MailAuthenticatorIF smtpAuthenticatorStrategy =  new SMTPAuthenticatorStrategy("protocolointegracao@gmail.com", "pr0t0c0l0ap1");
-        MailHeadStrategyIF smtpHeadStrategy = new SMTPHeadStrategy("protocolointegracao@gmail.com", "dicomflow@gmail.com", "dominio.com");
-        MailContentStrategyIF smtpSimpleContentStrategy = new SMTPSimpleContentStrategy();
+        MailAuthenticatorIF smtpAuthenticatorStrategy =  new SMTPAuthenticator("protocolointegracao@gmail.com", "pr0t0c0l0ap1");
+        MailHeadBuilderIF smtpHeadStrategy = new SMTPHeadBuilder("protocolointegracao@gmail.com", "dicomflow@gmail.com", "dominio.com");
+        MailContentBuilderIF smtpSimpleContentStrategy = new SMTPContentBuilder();
         
         SMTPSender sender = new SMTPSender();
         sender.setProperties(props);
@@ -250,9 +252,9 @@ public class EmailTestCase extends GenericTestCase {
         sendProps.put("mail.debug", "true");
         sendProps.put("mail.smtp.socketFactory.fallback", "false");
 
-        MailAuthenticatorIF smtpAuthenticatorStrategy =  new SMTPAuthenticatorStrategy("protocolointegracao@gmail.com", "pr0t0c0l0ap1");
-        MailHeadStrategyIF smtpHeadStrategy = new SMTPHeadStrategy("protocolointegracao@gmail.com", "dicomflow@gmail.com", "dominio.com");
-        MailContentStrategyIF smtpSimpleContentStrategy = new SMTPSimpleContentStrategy();
+        MailAuthenticatorIF smtpAuthenticatorStrategy =  new SMTPAuthenticator("protocolointegracao@gmail.com", "pr0t0c0l0ap1");
+        MailHeadBuilderIF smtpHeadStrategy = new SMTPHeadBuilder("protocolointegracao@gmail.com", "dicomflow@gmail.com", "dominio.com");
+        MailContentBuilderIF smtpSimpleContentStrategy = new SMTPContentBuilder();
         
         SMTPSender sender = new SMTPSender();
         sender.setProperties(sendProps);
@@ -300,14 +302,14 @@ public class EmailTestCase extends GenericTestCase {
         receiveProps.put("mail.imap.socketFactory.fallback", "false");
         receiveProps.put("mail.store.protocol", "imaps");
 		
-		MailAuthenticatorIF smtpAuthenticatorStrategy2 =  new SMTPAuthenticatorStrategy("dicomflow@gmail.com", "pr0t0c0l0ap1");
-		MailMessageStrategyIF smtpMesssaStrategy = new SMTPMessageStrategy("imap.googlemail.com", "INBOX");
-		MailHeadStrategyIF smtpHeadStrategy2 = new SMTPHeadStrategy();
+		MailAuthenticatorIF smtpAuthenticatorStrategy2 =  new SMTPAuthenticator("dicomflow@gmail.com", "pr0t0c0l0ap1");
+		MailMessageReaderIF smtpMesssaStrategy = new SMTPMessageReader("imap.googlemail.com", "INBOX");
+		MailServiceExtractorIF serviceExtractor2 = new SMTPServiceExtractor();
 		SMTPReceiver receiver = new SMTPReceiver();
 		receiver.setProperties(receiveProps);
 		receiver.setAuthenticatorBuilder(smtpAuthenticatorStrategy2);
-		receiver.setMessageBuilder(smtpMesssaStrategy);
-		receiver.setHeadBuilder(smtpHeadStrategy2);
+		receiver.setMessageReader(smtpMesssaStrategy);
+		receiver.setServiceExtractor(serviceExtractor2);
 		
 		Iterator<ServiceIF> iterator = receiver.receive(null);
 		

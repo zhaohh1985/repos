@@ -12,16 +12,16 @@ import javax.mail.Session;
 import javax.mail.Store;
 
 import br.ufpb.dicomflow.integrationAPI.mail.FilterIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailMessageStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailMessageReaderIF;
 
-public class SMTPMessageStrategy implements MailMessageStrategyIF {
+public class SMTPMessageReader implements MailMessageReaderIF {
 	
 	private String hostProvider;
 	private String folderName;
 
 	 
 	
-	public SMTPMessageStrategy(String hostProvider,String folderName) {
+	public SMTPMessageReader(String hostProvider,String folderName) {
 //		this.provider = provider;
 		this.hostProvider = hostProvider;
 		this.folderName = folderName;
@@ -88,7 +88,7 @@ public class SMTPMessageStrategy implements MailMessageStrategyIF {
 	
 	@Override
 	public int getType() {
-		return MailMessageStrategyIF.SMTP_MESSAGE_STRATEGY;
+		return MailMessageReaderIF.SMTP_MESSAGE_STRATEGY;
 	}
 
 	

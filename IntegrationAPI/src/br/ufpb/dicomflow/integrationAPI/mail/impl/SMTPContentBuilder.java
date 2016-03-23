@@ -17,13 +17,13 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.stream.StreamSource;
 
-import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailContentBuilderIF;
 import br.ufpb.dicomflow.integrationAPI.main.ServiceFactory;
 import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 import br.ufpb.dicomflow.integrationAPI.message.xml.UnknownService;
 import br.ufpb.dicomflow.integrationAPI.tests.NewService;
 
-public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
+public class SMTPContentBuilder implements MailContentBuilderIF {
 
 	@Override
 	public Message buildContent(Message message, ServiceIF service) {
@@ -61,7 +61,7 @@ public class SMTPSimpleContentStrategy implements MailContentStrategyIF {
 	}
 	
 	public int getType(){
-		return MailContentStrategyIF.SMTP_SIMPLE_CONTENT_STRATEGY;
+		return MailContentBuilderIF.SMTP_SIMPLE_CONTENT_STRATEGY;
 	}
 
 	@Override

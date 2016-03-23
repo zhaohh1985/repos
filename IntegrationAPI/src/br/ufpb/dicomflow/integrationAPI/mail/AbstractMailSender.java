@@ -40,9 +40,9 @@ public abstract class AbstractMailSender implements MailSenderIF {
 		public abstract MailAuthenticatorIF getAuthenticatorBuilder();
 
 		@Override
-		public abstract MailHeadStrategyIF getHeadBuilder();
+		public abstract MailHeadBuilderIF getHeadBuilder();
 
 		@Override
-		public abstract MailContentStrategyIF getContentBuilder();
+		public abstract MailContentBuilderIF getContentBuilder();
 
 }

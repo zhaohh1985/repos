@@ -7,11 +7,11 @@ public interface MailSenderIF extends SenderIF{
 	
 	public Properties getProperties();
 	
-	public MailHeadStrategyIF  getHeadBuilder();
+	public MailHeadBuilderIF  getHeadBuilder();
 	
 	public MailAuthenticatorIF getAuthenticatorBuilder();
 	
-	public MailContentStrategyIF getContentBuilder();
+	public MailContentBuilderIF getContentBuilder();
 	
 
 }

@@ -9,22 +9,22 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-import br.ufpb.dicomflow.integrationAPI.mail.MailContentStrategyIF;
-import br.ufpb.dicomflow.integrationAPI.mail.MailHeadStrategyIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailContentBuilderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailHeadBuilderIF;
 import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
-public class SMTPHeadStrategy implements MailHeadStrategyIF {
+public class SMTPHeadBuilder implements MailHeadBuilderIF {
 
 	
 	private String from;
 	private String to;
 	private String domain;
 	
-	public SMTPHeadStrategy(){
+	public SMTPHeadBuilder(){
 		
 	}
 	
-	public SMTPHeadStrategy(String from, String to, String domain){
+	public SMTPHeadBuilder(String from, String to, String domain){
 		this.from = from;
 		this.to = to;
 		this.domain = domain;
@@ -32,7 +32,7 @@ public class SMTPHeadStrategy implements MailHeadStrategyIF {
 	}
 	
 	@Override
-	public Message buildHead(Message message, ServiceIF service, MailContentStrategyIF contentBuilder) {
+	public Message buildHead(Message message, ServiceIF service, MailContentBuilderIF contentBuilder) {
         try {
 			message.setFrom(new InternetAddress(this.from));
 			
@@ -80,7 +80,7 @@ public class SMTPHeadStrategy implements MailHeadStrategyIF {
 	}
 	
 	public int getType(){
-		return MailHeadStrategyIF.SMTP_HEAD_STRATEGY;
+		return MailHeadBuilderIF.SMTP_HEAD_STRATEGY;
 	}
 	
 	public String getHeaderValue(Message message, String header) {
