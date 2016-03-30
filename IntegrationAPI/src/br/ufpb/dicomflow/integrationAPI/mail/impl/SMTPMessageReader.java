@@ -10,6 +10,10 @@ import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
+import javax.mail.search.AndTerm;
+import javax.mail.search.ComparisonTerm;
+import javax.mail.search.ReceivedDateTerm;
+import javax.mail.search.SearchTerm;
 
 import br.ufpb.dicomflow.integrationAPI.mail.FilterIF;
 import br.ufpb.dicomflow.integrationAPI.mail.MailMessageReaderIF;
@@ -46,9 +50,12 @@ public class SMTPMessageReader implements MailMessageReaderIF {
 		    
 		    folder.open(Folder.READ_WRITE);
 		    
-		    //TODO implementar código dos filtros
-		    messages.addAll(Arrays.asList(folder.getMessages()));
-		    
+		    SearchTerm term = filter.getTerm();
+		    if(term != null){
+		    	messages.addAll(Arrays.asList(folder.search(term)));
+		    }else{
+		    	messages.addAll(Arrays.asList(folder.getMessages()));
+		    }
 		    
 		    //TODO resolver o fechamento do folder e o store
 		    //folder.close(false);
@@ -61,6 +68,8 @@ public class SMTPMessageReader implements MailMessageReaderIF {
 		}
 		return messages;
 	}
+
+	
 
 //	public String getProvider() {
 //		return provider;
