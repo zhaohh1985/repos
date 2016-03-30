@@ -44,7 +44,6 @@ public abstract class AbstractMailReceiver implements MailReceiverIF {
 
 			} catch (NullPointerException e) {
 				e.printStackTrace();
-				return new ArrayList<ServiceIF>().iterator();
 			}
 
 			return services.iterator();

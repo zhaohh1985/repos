@@ -1,52 +1,90 @@
 package br.ufpb.dicomflow.integrationAPI.main;
 
+import java.util.Iterator;
 import java.util.Properties;
 
+import br.ufpb.dicomflow.integrationAPI.conf.IntegrationAPIProperties;
 import br.ufpb.dicomflow.integrationAPI.exceptions.ServiceCreationException;
+import br.ufpb.dicomflow.integrationAPI.mail.FilterIF;
 import br.ufpb.dicomflow.integrationAPI.mail.MailAuthenticatorIF;
 import br.ufpb.dicomflow.integrationAPI.mail.MailContentBuilderIF;
 import br.ufpb.dicomflow.integrationAPI.mail.MailHeadBuilderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailMessageReaderIF;
+import br.ufpb.dicomflow.integrationAPI.mail.MailServiceExtractorIF;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPAuthenticator;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPHeadBuilder;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSender;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPContentBuilder;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPHeadBuilder;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPMessageReader;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPReceiver;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSender;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPServiceExtractor;
 import br.ufpb.dicomflow.integrationAPI.message.xml.ServiceIF;
 
 public class ServiceProcessor {
-	
-	public static final String EMAIL = "email";
-	public static final String PASSWORD = "pwd";
-	public static final String FROM = "from";
-	public static final String TO = "to";
-	public static final String DOMAIN = "domain";
 
-	public static void sendMessage(ServiceIF obj, Properties props, MailAuthenticatorIF smtpAuthenticatorStrategy, MailHeadBuilderIF smtpHeadStrategy, MailContentBuilderIF smtpSimpleContentStrategy) throws ServiceCreationException {
+	public static void sendMessage(ServiceIF obj, String destinationMail, Properties props, MailAuthenticatorIF mailAuthenticator, MailHeadBuilderIF mailHeadBuilder, MailContentBuilderIF mailContentBuilder) throws ServiceCreationException {
 		
 		try {
-			obj.setTimestamp(System.currentTimeMillis()+"");			
+			obj.setTimestamp(System.currentTimeMillis()+"");
 			
-			//TODO alterar esse funcionamento.
-			if (smtpAuthenticatorStrategy == null) {
-				smtpAuthenticatorStrategy =  new SMTPAuthenticator(props.getProperty(EMAIL), props.getProperty(PASSWORD));
+			if(props == null){
+				props = IntegrationAPIProperties.getInstance().getSendProperties();
 			}
-			if (smtpHeadStrategy == null) {
-				smtpHeadStrategy = new SMTPHeadBuilder(props.getProperty(FROM), props.getProperty(TO), props.getProperty(DOMAIN));
+			
+			if (mailAuthenticator == null) {
+				mailAuthenticator =  new SMTPAuthenticator(props.getProperty(IntegrationAPIProperties.AUTHENTICATION_LOGIN), props.getProperty(IntegrationAPIProperties.AUTHENTICATION_PASSWORD));
 			}
-			if (smtpSimpleContentStrategy == null) {
-				smtpSimpleContentStrategy = new SMTPContentBuilder();
+			if (mailHeadBuilder == null) {
+				mailHeadBuilder = new SMTPHeadBuilder(props.getProperty(IntegrationAPIProperties.AUTHENTICATION_LOGIN), destinationMail, props.getProperty(IntegrationAPIProperties.DOMAIN));
+			}
+			if (mailContentBuilder == null) {
+				mailContentBuilder = new SMTPContentBuilder();
 			}	        	      
 	        
 	        SMTPSender sender = new SMTPSender();
 	        sender.setProperties(props);
-	        sender.setAuthenticatorBuilder(smtpAuthenticatorStrategy);
-	        sender.setHeadBuilder(smtpHeadStrategy);
-	        sender.setContentBuilder(smtpSimpleContentStrategy);
+	        sender.setAuthenticatorBuilder(mailAuthenticator);
+	        sender.setHeadBuilder(mailHeadBuilder);
+	        sender.setContentBuilder(mailContentBuilder);
 	        
 	        sender.send(obj);
 
 		} catch (Exception e) {
 			throw new ServiceCreationException(e.getMessage());
 		}
+		
+	}
+	
+	public static Iterator<ServiceIF> receiveMessage(Properties props, MailAuthenticatorIF mailAuthenticator, MailServiceExtractorIF mailServiceExtractor, MailMessageReaderIF mailMessageReader, FilterIF filter) throws ServiceCreationException{
+		
+		try{
+			if(props == null){
+				props = IntegrationAPIProperties.getInstance().getReceiveProperties();
+			}
+			
+			if (mailAuthenticator == null) {
+				mailAuthenticator =  new SMTPAuthenticator(props.getProperty(IntegrationAPIProperties.AUTHENTICATION_LOGIN), props.getProperty(IntegrationAPIProperties.AUTHENTICATION_PASSWORD));
+			}
+			
+			if(mailServiceExtractor == null){
+				mailServiceExtractor = new SMTPServiceExtractor();
+			}
+			
+			if(mailMessageReader == null){
+				mailMessageReader = new SMTPMessageReader(props.getProperty(IntegrationAPIProperties.PROVIDER_HOST), props.getProperty(IntegrationAPIProperties.PROVIDER_FOLDER));
+			}
+			
+			SMTPReceiver receiver = new SMTPReceiver();
+			receiver.setProperties(props);
+			receiver.setAuthenticatorBuilder(mailAuthenticator);
+			receiver.setMessageReader(mailMessageReader);
+			receiver.setServiceExtractor(mailServiceExtractor);
+			
+			return receiver.receive(filter);
+		} catch (Exception e) {
+			throw new ServiceCreationException(e.getMessage());
+		}
+		
 		
 	}
 	
