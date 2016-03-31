@@ -1,27 +1,9 @@
 package br.ufpb.dicomflow.integrationAPI.tests;
 
-import java.io.File;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-
-import javax.mail.Address;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 
 import org.junit.Test;
 
@@ -31,11 +13,11 @@ import br.ufpb.dicomflow.integrationAPI.mail.MailHeadBuilderIF;
 import br.ufpb.dicomflow.integrationAPI.mail.MailMessageReaderIF;
 import br.ufpb.dicomflow.integrationAPI.mail.MailServiceExtractorIF;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPAuthenticator;
+import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPContentBuilder;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPHeadBuilder;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPMessageReader;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPReceiver;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPSender;
-import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPContentBuilder;
 import br.ufpb.dicomflow.integrationAPI.mail.impl.SMTPServiceExtractor;
 import br.ufpb.dicomflow.integrationAPI.main.DefaultIdMessageGeneratorStrategy;
 import br.ufpb.dicomflow.integrationAPI.main.ServiceFactory;
@@ -238,10 +220,7 @@ public class EmailTestCase extends GenericTestCase {
 	
 	@Test
 	public static void testeReadUnkownService(){
-		
-		
-		
-						
+												
 		Properties sendProps = new Properties();
 		sendProps.put("mail.smtp.host", "smtp.gmail.com");
         sendProps.put("mail.smtp.socketFactory.port", "25");

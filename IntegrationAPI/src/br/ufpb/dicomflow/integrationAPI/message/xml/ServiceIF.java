@@ -1,6 +1,5 @@
 package br.ufpb.dicomflow.integrationAPI.message.xml;
 
-import javax.xml.bind.annotation.XmlAttribute;
 
 public interface ServiceIF {
 	
@@ -20,7 +19,11 @@ public interface ServiceIF {
 	/**
 	 * StogareResult Service Identifier 
 	 */
-	public static final int STORAGE_RESULT = 4;
+	public static final int STORAGE_RESULT = 4;	
+	/**
+	 * DispositionNotification Service Identifier 
+	 */
+	public static final int DISPOSITION_NOTIFICATION = 5;
 
 	public int getType();
 	
