@@ -11,7 +11,7 @@ public class Notification {
 	private String ErrorCode;
 	private String comment;
 	
-	//TODO Error Codes and DispositionField
+	//TODO Error Codes and DispositionFields
 	
 	public String getOriginalMessageID() {
 		return originalMessageID;
