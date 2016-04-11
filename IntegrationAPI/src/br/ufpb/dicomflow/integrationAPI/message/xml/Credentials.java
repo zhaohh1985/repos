@@ -7,7 +7,16 @@ public class Credentials {
 		
 	
 	private String value;	
+	
+	public Credentials(){
+		
+	}
 
+	public Credentials(String value){
+		this.value = value;
+	}
+	
+	
 	public String getValue() {
 		return value;
 	}

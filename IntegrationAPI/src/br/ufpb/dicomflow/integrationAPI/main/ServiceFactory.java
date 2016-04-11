@@ -162,6 +162,9 @@ public class ServiceFactory {
 		
 		if(object instanceof ServiceIF){
 			
+			ServiceIF service = (ServiceIF) object;
+			service.setMessageID(DefaultIdMessageGeneratorStrategy.getInstance().getNextId());
+			
 			return (ServiceIF) object;
 			
 		}else{
