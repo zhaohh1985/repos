@@ -34,9 +34,14 @@ public class ServiceProcessor {
 			if (mailAuthenticator == null) {
 				mailAuthenticator =  new SMTPAuthenticator(props.getProperty(IntegrationAPIProperties.AUTHENTICATION_LOGIN), props.getProperty(IntegrationAPIProperties.AUTHENTICATION_PASSWORD));
 			}
+			
 			if (mailHeadBuilder == null) {
 				mailHeadBuilder = new SMTPHeadBuilder(props.getProperty(IntegrationAPIProperties.AUTHENTICATION_LOGIN), destinationMail, props.getProperty(IntegrationAPIProperties.DOMAIN));
+			}else{
+				mailHeadBuilder.setTo(destinationMail);
 			}
+			
+			
 			if (mailContentBuilder == null) {
 				mailContentBuilder = new SMTPContentBuilder();
 			}	        	      

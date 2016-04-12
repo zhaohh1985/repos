@@ -13,5 +13,17 @@ public interface MailHeadBuilderIF {
 	public String getHeaderValue(Message message, String header);
 	
 	public int getType();
+	
+	public String getFrom();
+
+	public void setFrom(String from);
+
+	public String getTo();
+
+	public void setTo(String to);
+
+	public String getDomain();
+
+	public void setDomain(String domain);
 
 }
